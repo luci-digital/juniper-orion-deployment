@@ -1,0 +1,1066 @@
+{
+  "total_paragraphs": 38,
+  "translated_paragraphs": 38,
+  "semantic_shifts": [
+    {
+      "lang": "de",
+      "type": "word_order",
+      "original": "Foray into the world of",
+      "translation": "Streifzug durch die Welt der",
+      "original_order": [
+        "foray",
+        "into",
+        "the"
+      ],
+      "translation_order": [
+        "streifzug",
+        "durch",
+        "die"
+      ],
+      "paragraph_index": 1
+    },
+    {
+      "lang": "fr",
+      "type": "word_order",
+      "original": "Foray into the world of",
+      "translation": "excursion à travers le monde",
+      "original_order": [
+        "foray",
+        "into",
+        "the"
+      ],
+      "translation_order": [
+        "excursion",
+        "à",
+        "travers"
+      ],
+      "paragraph_index": 1
+    },
+    {
+      "lang": "zh",
+      "type": "word_order",
+      "original": "Foray into the world of",
+      "translation": "遊覽 Commons 上的地圖世界",
+      "original_order": [
+        "foray",
+        "into",
+        "the"
+      ],
+      "translation_order": [
+        "遊覽",
+        "commons",
+        "上的地圖世界"
+      ],
+      "paragraph_index": 1
+    },
+    {
+      "lang": "de",
+      "type": "word_order",
+      "original": "Hi I hope that this",
+      "translation": "Hi Auf dieser Seite möchte",
+      "original_order": [
+        "hi",
+        "i",
+        "hope"
+      ],
+      "translation_order": [
+        "hi",
+        "auf",
+        "dieser"
+      ],
+      "paragraph_index": 2
+    },
+    {
+      "lang": "fr",
+      "type": "word_order",
+      "original": "Hi I hope that this",
+      "translation": "Salut J espère que cette",
+      "original_order": [
+        "hi",
+        "i",
+        "hope"
+      ],
+      "translation_order": [
+        "salut",
+        "j",
+        "espère"
+      ],
+      "paragraph_index": 2
+    },
+    {
+      "lang": "zh",
+      "type": "word_order",
+      "original": "Hi I hope that this",
+      "translation": "你好 我希望此頁面將幫助地圖的創建者和使用者了解在 Commons 內對地圖進行分類的可能性 這也使它們更容易找到",
+      "original_order": [
+        "hi",
+        "i",
+        "hope"
+      ],
+      "translation_order": [
+        "你好",
+        "我希望此頁面將幫助地圖的創建者和使用者了解在",
+        "commons"
+      ],
+      "paragraph_index": 2
+    },
+    {
+      "lang": "ar",
+      "type": "word_order",
+      "original": "Hi I hope that this",
+      "translation": "آمل أن تساعد هذه الصفحة",
+      "original_order": [
+        "hi",
+        "i",
+        "hope"
+      ],
+      "translation_order": [
+        "آمل",
+        "أن",
+        "تساعد"
+      ],
+      "paragraph_index": 2
+    },
+    {
+      "lang": "uk",
+      "type": "word_order",
+      "original": "Hi I hope that this",
+      "translation": "Привіт Я сподіваюся що ця",
+      "original_order": [
+        "hi",
+        "i",
+        "hope"
+      ],
+      "translation_order": [
+        "привіт",
+        "я",
+        "сподіваюся"
+      ],
+      "paragraph_index": 2
+    },
+    {
+      "lang": "es",
+      "type": "word_order",
+      "original": "Hi I hope that this",
+      "translation": "Hola Espero que esta página",
+      "original_order": [
+        "hi",
+        "i",
+        "hope"
+      ],
+      "translation_order": [
+        "hola",
+        "espero",
+        "que"
+      ],
+      "paragraph_index": 2
+    },
+    {
+      "lang": "it",
+      "type": "word_order",
+      "original": "Hi I hope that this",
+      "translation": "Ciao Spero che questa pagina",
+      "original_order": [
+        "hi",
+        "i",
+        "hope"
+      ],
+      "translation_order": [
+        "ciao",
+        "spero",
+        "che"
+      ],
+      "paragraph_index": 2
+    },
+    {
+      "lang": "de",
+      "type": "word_order",
+      "original": "EN General advice The most",
+      "translation": "DE Allgemeine Empfehlungen Die folgenden",
+      "original_order": [
+        "en",
+        "general",
+        "advice"
+      ],
+      "translation_order": [
+        "de",
+        "allgemeine",
+        "empfehlungen"
+      ],
+      "paragraph_index": 3
+    },
+    {
+      "lang": "zh",
+      "type": "word_order",
+      "original": "EN General advice The most",
+      "translation": "目前缺少翻譯 請嘗試英文",
+      "original_order": [
+        "en",
+        "general",
+        "advice"
+      ],
+      "translation_order": [
+        "目前缺少翻譯",
+        "請嘗試英文"
+      ],
+      "paragraph_index": 3
+    },
+    {
+      "lang": "ru",
+      "type": "word_order",
+      "original": "EN General advice The most",
+      "translation": "в настоящее время недоступно попробуйте",
+      "original_order": [
+        "en",
+        "general",
+        "advice"
+      ],
+      "translation_order": [
+        "в",
+        "настоящее",
+        "время"
+      ],
+      "paragraph_index": 3
+    }
+  ],
+  "meaning_changes": [],
+  "divergence_timeline": [
+    {
+      "language": "de",
+      "total_shifts": 3,
+      "word_order_shifts": 3,
+      "concept_shifts": 0,
+      "divergence_level": "medium",
+      "shifts": [
+        {
+          "lang": "de",
+          "type": "word_order",
+          "original": "Foray into the world of",
+          "translation": "Streifzug durch die Welt der",
+          "original_order": [
+            "foray",
+            "into",
+            "the"
+          ],
+          "translation_order": [
+            "streifzug",
+            "durch",
+            "die"
+          ],
+          "paragraph_index": 1
+        },
+        {
+          "lang": "de",
+          "type": "word_order",
+          "original": "Hi I hope that this",
+          "translation": "Hi Auf dieser Seite möchte",
+          "original_order": [
+            "hi",
+            "i",
+            "hope"
+          ],
+          "translation_order": [
+            "hi",
+            "auf",
+            "dieser"
+          ],
+          "paragraph_index": 2
+        },
+        {
+          "lang": "de",
+          "type": "word_order",
+          "original": "EN General advice The most",
+          "translation": "DE Allgemeine Empfehlungen Die folgenden",
+          "original_order": [
+            "en",
+            "general",
+            "advice"
+          ],
+          "translation_order": [
+            "de",
+            "allgemeine",
+            "empfehlungen"
+          ],
+          "paragraph_index": 3
+        }
+      ]
+    },
+    {
+      "language": "fr",
+      "total_shifts": 2,
+      "word_order_shifts": 2,
+      "concept_shifts": 0,
+      "divergence_level": "medium",
+      "shifts": [
+        {
+          "lang": "fr",
+          "type": "word_order",
+          "original": "Foray into the world of",
+          "translation": "excursion à travers le monde",
+          "original_order": [
+            "foray",
+            "into",
+            "the"
+          ],
+          "translation_order": [
+            "excursion",
+            "à",
+            "travers"
+          ],
+          "paragraph_index": 1
+        },
+        {
+          "lang": "fr",
+          "type": "word_order",
+          "original": "Hi I hope that this",
+          "translation": "Salut J espère que cette",
+          "original_order": [
+            "hi",
+            "i",
+            "hope"
+          ],
+          "translation_order": [
+            "salut",
+            "j",
+            "espère"
+          ],
+          "paragraph_index": 2
+        }
+      ]
+    },
+    {
+      "language": "zh",
+      "total_shifts": 3,
+      "word_order_shifts": 3,
+      "concept_shifts": 0,
+      "divergence_level": "medium",
+      "shifts": [
+        {
+          "lang": "zh",
+          "type": "word_order",
+          "original": "Foray into the world of",
+          "translation": "遊覽 Commons 上的地圖世界",
+          "original_order": [
+            "foray",
+            "into",
+            "the"
+          ],
+          "translation_order": [
+            "遊覽",
+            "commons",
+            "上的地圖世界"
+          ],
+          "paragraph_index": 1
+        },
+        {
+          "lang": "zh",
+          "type": "word_order",
+          "original": "Hi I hope that this",
+          "translation": "你好 我希望此頁面將幫助地圖的創建者和使用者了解在 Commons 內對地圖進行分類的可能性 這也使它們更容易找到",
+          "original_order": [
+            "hi",
+            "i",
+            "hope"
+          ],
+          "translation_order": [
+            "你好",
+            "我希望此頁面將幫助地圖的創建者和使用者了解在",
+            "commons"
+          ],
+          "paragraph_index": 2
+        },
+        {
+          "lang": "zh",
+          "type": "word_order",
+          "original": "EN General advice The most",
+          "translation": "目前缺少翻譯 請嘗試英文",
+          "original_order": [
+            "en",
+            "general",
+            "advice"
+          ],
+          "translation_order": [
+            "目前缺少翻譯",
+            "請嘗試英文"
+          ],
+          "paragraph_index": 3
+        }
+      ]
+    },
+    {
+      "language": "ar",
+      "total_shifts": 1,
+      "word_order_shifts": 1,
+      "concept_shifts": 0,
+      "divergence_level": "low",
+      "shifts": [
+        {
+          "lang": "ar",
+          "type": "word_order",
+          "original": "Hi I hope that this",
+          "translation": "آمل أن تساعد هذه الصفحة",
+          "original_order": [
+            "hi",
+            "i",
+            "hope"
+          ],
+          "translation_order": [
+            "آمل",
+            "أن",
+            "تساعد"
+          ],
+          "paragraph_index": 2
+        }
+      ]
+    },
+    {
+      "language": "uk",
+      "total_shifts": 1,
+      "word_order_shifts": 1,
+      "concept_shifts": 0,
+      "divergence_level": "low",
+      "shifts": [
+        {
+          "lang": "uk",
+          "type": "word_order",
+          "original": "Hi I hope that this",
+          "translation": "Привіт Я сподіваюся що ця",
+          "original_order": [
+            "hi",
+            "i",
+            "hope"
+          ],
+          "translation_order": [
+            "привіт",
+            "я",
+            "сподіваюся"
+          ],
+          "paragraph_index": 2
+        }
+      ]
+    },
+    {
+      "language": "es",
+      "total_shifts": 1,
+      "word_order_shifts": 1,
+      "concept_shifts": 0,
+      "divergence_level": "low",
+      "shifts": [
+        {
+          "lang": "es",
+          "type": "word_order",
+          "original": "Hi I hope that this",
+          "translation": "Hola Espero que esta página",
+          "original_order": [
+            "hi",
+            "i",
+            "hope"
+          ],
+          "translation_order": [
+            "hola",
+            "espero",
+            "que"
+          ],
+          "paragraph_index": 2
+        }
+      ]
+    },
+    {
+      "language": "it",
+      "total_shifts": 1,
+      "word_order_shifts": 1,
+      "concept_shifts": 0,
+      "divergence_level": "low",
+      "shifts": [
+        {
+          "lang": "it",
+          "type": "word_order",
+          "original": "Hi I hope that this",
+          "translation": "Ciao Spero che questa pagina",
+          "original_order": [
+            "hi",
+            "i",
+            "hope"
+          ],
+          "translation_order": [
+            "ciao",
+            "spero",
+            "che"
+          ],
+          "paragraph_index": 2
+        }
+      ]
+    },
+    {
+      "language": "ru",
+      "total_shifts": 1,
+      "word_order_shifts": 1,
+      "concept_shifts": 0,
+      "divergence_level": "low",
+      "shifts": [
+        {
+          "lang": "ru",
+          "type": "word_order",
+          "original": "EN General advice The most",
+          "translation": "в настоящее время недоступно попробуйте",
+          "original_order": [
+            "en",
+            "general",
+            "advice"
+          ],
+          "translation_order": [
+            "в",
+            "настоящее",
+            "время"
+          ],
+          "paragraph_index": 3
+        }
+      ]
+    }
+  ],
+  "significant_paragraphs": [
+    {
+      "paragraph_index": 1,
+      "shift_count": 3,
+      "paragraph_text": "Streifzug durch die Welt der Karten auf Commons",
+      "shifts": [
+        {
+          "lang": "de",
+          "type": "word_order",
+          "original": "Foray into the world of",
+          "translation": "Streifzug durch die Welt der",
+          "original_order": [
+            "foray",
+            "into",
+            "the"
+          ],
+          "translation_order": [
+            "streifzug",
+            "durch",
+            "die"
+          ],
+          "paragraph_index": 1
+        },
+        {
+          "lang": "fr",
+          "type": "word_order",
+          "original": "Foray into the world of",
+          "translation": "excursion à travers le monde",
+          "original_order": [
+            "foray",
+            "into",
+            "the"
+          ],
+          "translation_order": [
+            "excursion",
+            "à",
+            "travers"
+          ],
+          "paragraph_index": 1
+        },
+        {
+          "lang": "zh",
+          "type": "word_order",
+          "original": "Foray into the world of",
+          "translation": "遊覽 Commons 上的地圖世界",
+          "original_order": [
+            "foray",
+            "into",
+            "the"
+          ],
+          "translation_order": [
+            "遊覽",
+            "commons",
+            "上的地圖世界"
+          ],
+          "paragraph_index": 1
+        }
+      ]
+    },
+    {
+      "paragraph_index": 2,
+      "shift_count": 7,
+      "paragraph_text": "Hi! I hope that this page will help creators and users of maps to see the possibilities in categorizing maps within Commons, which also makes them easier to find. (You are welcome to help translating ",
+      "shifts": [
+        {
+          "lang": "de",
+          "type": "word_order",
+          "original": "Hi I hope that this",
+          "translation": "Hi Auf dieser Seite möchte",
+          "original_order": [
+            "hi",
+            "i",
+            "hope"
+          ],
+          "translation_order": [
+            "hi",
+            "auf",
+            "dieser"
+          ],
+          "paragraph_index": 2
+        },
+        {
+          "lang": "fr",
+          "type": "word_order",
+          "original": "Hi I hope that this",
+          "translation": "Salut J espère que cette",
+          "original_order": [
+            "hi",
+            "i",
+            "hope"
+          ],
+          "translation_order": [
+            "salut",
+            "j",
+            "espère"
+          ],
+          "paragraph_index": 2
+        },
+        {
+          "lang": "zh",
+          "type": "word_order",
+          "original": "Hi I hope that this",
+          "translation": "你好 我希望此頁面將幫助地圖的創建者和使用者了解在 Commons 內對地圖進行分類的可能性 這也使它們更容易找到",
+          "original_order": [
+            "hi",
+            "i",
+            "hope"
+          ],
+          "translation_order": [
+            "你好",
+            "我希望此頁面將幫助地圖的創建者和使用者了解在",
+            "commons"
+          ],
+          "paragraph_index": 2
+        },
+        {
+          "lang": "ar",
+          "type": "word_order",
+          "original": "Hi I hope that this",
+          "translation": "آمل أن تساعد هذه الصفحة",
+          "original_order": [
+            "hi",
+            "i",
+            "hope"
+          ],
+          "translation_order": [
+            "آمل",
+            "أن",
+            "تساعد"
+          ],
+          "paragraph_index": 2
+        },
+        {
+          "lang": "uk",
+          "type": "word_order",
+          "original": "Hi I hope that this",
+          "translation": "Привіт Я сподіваюся що ця",
+          "original_order": [
+            "hi",
+            "i",
+            "hope"
+          ],
+          "translation_order": [
+            "привіт",
+            "я",
+            "сподіваюся"
+          ],
+          "paragraph_index": 2
+        },
+        {
+          "lang": "es",
+          "type": "word_order",
+          "original": "Hi I hope that this",
+          "translation": "Hola Espero que esta página",
+          "original_order": [
+            "hi",
+            "i",
+            "hope"
+          ],
+          "translation_order": [
+            "hola",
+            "espero",
+            "que"
+          ],
+          "paragraph_index": 2
+        },
+        {
+          "lang": "it",
+          "type": "word_order",
+          "original": "Hi I hope that this",
+          "translation": "Ciao Spero che questa pagina",
+          "original_order": [
+            "hi",
+            "i",
+            "hope"
+          ],
+          "translation_order": [
+            "ciao",
+            "spero",
+            "che"
+          ],
+          "paragraph_index": 2
+        }
+      ]
+    },
+    {
+      "paragraph_index": 3,
+      "shift_count": 3,
+      "paragraph_text": "EN: General advice The most important information are, in this order: What, Where, When (and often: Who ). These infos should all be included in file name, description page or category, and better in ",
+      "shifts": [
+        {
+          "lang": "de",
+          "type": "word_order",
+          "original": "EN General advice The most",
+          "translation": "DE Allgemeine Empfehlungen Die folgenden",
+          "original_order": [
+            "en",
+            "general",
+            "advice"
+          ],
+          "translation_order": [
+            "de",
+            "allgemeine",
+            "empfehlungen"
+          ],
+          "paragraph_index": 3
+        },
+        {
+          "lang": "zh",
+          "type": "word_order",
+          "original": "EN General advice The most",
+          "translation": "目前缺少翻譯 請嘗試英文",
+          "original_order": [
+            "en",
+            "general",
+            "advice"
+          ],
+          "translation_order": [
+            "目前缺少翻譯",
+            "請嘗試英文"
+          ],
+          "paragraph_index": 3
+        },
+        {
+          "lang": "ru",
+          "type": "word_order",
+          "original": "EN General advice The most",
+          "translation": "в настоящее время недоступно попробуйте",
+          "original_order": [
+            "en",
+            "general",
+            "advice"
+          ],
+          "translation_order": [
+            "в",
+            "настоящее",
+            "время"
+          ],
+          "paragraph_index": 3
+        }
+      ]
+    }
+  ],
+  "translations": [
+    {
+      "original": "Foray into the world of",
+      "original_lang": "en",
+      "de": "Streifzug durch die Welt der",
+      "en": "Foray into the world of",
+      "fr": "excursion à travers le monde",
+      "zh": "遊覽 Commons 上的地圖世界",
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 1,
+      "paragraph_type": "multilingual"
+    },
+    {
+      "original": "Hi I hope that this",
+      "original_lang": "en",
+      "en": "Hi I hope that this",
+      "de": "Hi Auf dieser Seite möchte",
+      "fr": "Salut J espère que cette",
+      "ar": "آمل أن تساعد هذه الصفحة",
+      "uk": "Привіт Я сподіваюся що ця",
+      "es": "Hola Espero que esta página",
+      "it": "Ciao Spero che questa pagina",
+      "zh": "你好 我希望此頁面將幫助地圖的創建者和使用者了解在 Commons 內對地圖進行分類的可能性 這也使它們更容易找到",
+      "ru": null,
+      "paragraph_index": 2,
+      "paragraph_type": "multilingual"
+    },
+    {
+      "original": "EN General advice The most",
+      "original_lang": "en",
+      "en": "EN General advice The most",
+      "de": "DE Allgemeine Empfehlungen Die folgenden",
+      "ru": "в настоящее время недоступно попробуйте",
+      "zh": "目前缺少翻譯 請嘗試英文",
+      "fr": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "paragraph_index": 3,
+      "paragraph_type": "multilingual"
+    },
+    {
+      "original": "The most important information are",
+      "original_lang": "en",
+      "en": "The most important information are",
+      "de": null,
+      "fr": null,
+      "zh": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 4,
+      "paragraph_type": "single"
+    },
+    {
+      "original": "Die folgenden Informationen sind in",
+      "original_lang": "en",
+      "en": "Die folgenden Informationen sind in",
+      "de": null,
+      "fr": null,
+      "zh": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 5,
+      "paragraph_type": "single"
+    },
+    {
+      "original": "Unterschied zuAltenKarten Diese hier zeigen",
+      "original_lang": "en",
+      "en": "Unterschied zuAltenKarten Diese hier zeigen",
+      "de": null,
+      "fr": null,
+      "zh": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 6,
+      "paragraph_type": "single"
+    },
+    {
+      "original": "Maps can either be purely",
+      "original_lang": "en",
+      "en": "Maps can either be purely",
+      "de": null,
+      "fr": null,
+      "zh": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 7,
+      "paragraph_type": "table_cell"
+    },
+    {
+      "original": "Category Blank mapsof",
+      "original_lang": "en",
+      "en": "Category Blank mapsof",
+      "de": null,
+      "fr": null,
+      "zh": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 8,
+      "paragraph_type": "table_cell"
+    },
+    {
+      "original": "Subject None Blank maps are",
+      "original_lang": "en",
+      "en": "Subject None Blank maps are",
+      "de": null,
+      "fr": null,
+      "zh": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 9,
+      "paragraph_type": "table_cell"
+    },
+    {
+      "original": "Category Location mapsof",
+      "original_lang": "en",
+      "en": "Category Location mapsof",
+      "de": null,
+      "fr": null,
+      "zh": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 10,
+      "paragraph_type": "table_cell"
+    },
+    {
+      "original": "Subject Showing an area often",
+      "original_lang": "en",
+      "en": "Subject Showing an area often",
+      "de": null,
+      "fr": null,
+      "zh": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 11,
+      "paragraph_type": "table_cell"
+    },
+    {
+      "original": "Subject One single dot placed",
+      "original_lang": "en",
+      "en": "Subject One single dot placed",
+      "de": null,
+      "fr": null,
+      "zh": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 12,
+      "paragraph_type": "table_cell"
+    },
+    {
+      "original": "Category Locator mapsof areas",
+      "original_lang": "en",
+      "en": "Category Locator mapsof areas",
+      "de": null,
+      "fr": null,
+      "zh": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 13,
+      "paragraph_type": "table_cell"
+    },
+    {
+      "original": "Subject One specific area highlighted",
+      "original_lang": "en",
+      "en": "Subject One specific area highlighted",
+      "de": null,
+      "fr": null,
+      "zh": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 14,
+      "paragraph_type": "table_cell"
+    },
+    {
+      "original": "Category Bilateral mapsandCategory Locator maps",
+      "original_lang": "en",
+      "en": "Category Bilateral mapsandCategory Locator maps",
+      "de": null,
+      "fr": null,
+      "zh": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 15,
+      "paragraph_type": "table_cell"
+    },
+    {
+      "original": "Subject Special cases of locator",
+      "original_lang": "en",
+      "en": "Subject Special cases of locator",
+      "de": null,
+      "fr": null,
+      "zh": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 16,
+      "paragraph_type": "table_cell"
+    },
+    {
+      "original": "Locator maps of streets roads",
+      "original_lang": "en",
+      "en": "Locator maps of streets roads",
+      "de": null,
+      "fr": null,
+      "zh": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 17,
+      "paragraph_type": "table_cell"
+    },
+    {
+      "original": "Subject One specific road line",
+      "original_lang": "en",
+      "en": "Subject One specific road line",
+      "de": null,
+      "fr": null,
+      "zh": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 18,
+      "paragraph_type": "table_cell"
+    },
+    {
+      "original": "Category Road mapsof andCategory Rail",
+      "original_lang": "en",
+      "en": "Category Road mapsof andCategory Rail",
+      "de": null,
+      "fr": null,
+      "zh": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 19,
+      "paragraph_type": "table_cell"
+    },
+    {
+      "original": "Subject Networks of roads railroads",
+      "original_lang": "en",
+      "en": "Subject Networks of roads railroads",
+      "de": null,
+      "fr": null,
+      "zh": null,
+      "ar": null,
+      "uk": null,
+      "es": null,
+      "it": null,
+      "ru": null,
+      "paragraph_index": 20,
+      "paragraph_type": "table_cell"
+    }
+  ]
+}

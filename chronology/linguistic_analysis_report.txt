@@ -1,0 +1,194 @@
+================================================================================
+DETAILED LINGUISTIC ANALYSIS REPORT
+================================================================================
+
+Generated: 2025-11-11 17:16:04
+
+SUMMARY
+--------------------------------------------------------------------------------
+Total paragraphs analyzed: 38
+Paragraphs with translations: 38
+Semantic shifts detected: 13
+Meaning-changing words: 0
+Paragraphs with significant changes: 3
+Languages analyzed: 8
+
+================================================================================
+TRANSLATIONS: FIRST 5 WORDS OF EACH PARAGRAPH
+================================================================================
+
+Paragraph 1:
+----------------------------------------
+  EN : Foray into the world of
+  DE : Streifzug durch die Welt der
+  FR : excursion à travers le monde
+  ZH : 遊覽 Commons 上的地圖世界
+
+Paragraph 2:
+----------------------------------------
+  EN : Hi I hope that this
+  DE : Hi Auf dieser Seite möchte
+  FR : Salut J espère que cette
+  ES : Hola Espero que esta página
+  IT : Ciao Spero che questa pagina
+  ZH : 你好 我希望此頁面將幫助地圖的創建者和使用者了解在 Commons 內對地圖進行分類的可能性 這也使它們更容易找到
+  AR : آمل أن تساعد هذه الصفحة
+  UK : Привіт Я сподіваюся що ця
+
+Paragraph 3:
+----------------------------------------
+  EN : EN General advice The most
+  DE : DE Allgemeine Empfehlungen Die folgenden
+  ZH : 目前缺少翻譯 請嘗試英文
+  RU : в настоящее время недоступно попробуйте
+
+Paragraph 4:
+----------------------------------------
+  EN : The most important information are
+
+Paragraph 5:
+----------------------------------------
+  EN : Die folgenden Informationen sind in
+
+Paragraph 6:
+----------------------------------------
+  EN : Unterschied zuAltenKarten Diese hier zeigen
+
+Paragraph 7:
+----------------------------------------
+  EN : Maps can either be purely
+
+Paragraph 8:
+----------------------------------------
+  EN : Category Blank mapsof
+
+Paragraph 9:
+----------------------------------------
+  EN : Subject None Blank maps are
+
+Paragraph 10:
+----------------------------------------
+  EN : Category Location mapsof
+
+Paragraph 11:
+----------------------------------------
+  EN : Subject Showing an area often
+
+Paragraph 12:
+----------------------------------------
+  EN : Subject One single dot placed
+
+Paragraph 13:
+----------------------------------------
+  EN : Category Locator mapsof areas
+
+Paragraph 14:
+----------------------------------------
+  EN : Subject One specific area highlighted
+
+Paragraph 15:
+----------------------------------------
+  EN : Category Bilateral mapsandCategory Locator maps
+
+Paragraph 16:
+----------------------------------------
+  EN : Subject Special cases of locator
+
+Paragraph 17:
+----------------------------------------
+  EN : Locator maps of streets roads
+
+Paragraph 18:
+----------------------------------------
+  EN : Subject One specific road line
+
+Paragraph 19:
+----------------------------------------
+  EN : Category Road mapsof andCategory Rail
+
+Paragraph 20:
+----------------------------------------
+  EN : Subject Networks of roads railroads
+
+================================================================================
+PARAGRAPHS WITH SIGNIFICANT MEANING CHANGES
+================================================================================
+
+Paragraph 1 (3 shifts):
+Text: Streifzug durch die Welt der Karten auf Commons...
+Shifts:
+  - word_order in de: Foray into the world of → Streifzug durch die Welt der
+  - word_order in fr: Foray into the world of → excursion à travers le monde
+  - word_order in zh: Foray into the world of → 遊覽 Commons 上的地圖世界
+
+Paragraph 2 (7 shifts):
+Text: Hi! I hope that this page will help creators and users of maps to see the possibilities in categorizing maps within Commons, which also makes them easier to find. (You are welcome to help translating ...
+Shifts:
+  - word_order in de: Hi I hope that this → Hi Auf dieser Seite möchte
+  - word_order in fr: Hi I hope that this → Salut J espère que cette
+  - word_order in zh: Hi I hope that this → 你好 我希望此頁面將幫助地圖的創建者和使用者了解在 Commons 內對地圖進行分類的可能性 這也使
+  - word_order in ar: Hi I hope that this → آمل أن تساعد هذه الصفحة
+  - word_order in uk: Hi I hope that this → Привіт Я сподіваюся що ця
+  - word_order in es: Hi I hope that this → Hola Espero que esta página
+  - word_order in it: Hi I hope that this → Ciao Spero che questa pagina
+
+Paragraph 3 (3 shifts):
+Text: EN: General advice The most important information are, in this order: What, Where, When (and often: Who ). These infos should all be included in file name, description page or category, and better in ...
+Shifts:
+  - word_order in de: EN General advice The most → DE Allgemeine Empfehlungen Die folgenden
+  - word_order in zh: EN General advice The most → 目前缺少翻譯 請嘗試英文
+  - word_order in ru: EN General advice The most → в настоящее время недоступно попробуйте
+
+================================================================================
+TEMPORAL DIVERGENCE ANALYSIS
+================================================================================
+
+Tracing linguistic divergence from historical point to present:
+
+Language: DE
+  Divergence Level: MEDIUM
+  Total Shifts: 3
+  Word Order Shifts: 3
+  Concept Shifts: 0
+
+Language: FR
+  Divergence Level: MEDIUM
+  Total Shifts: 2
+  Word Order Shifts: 2
+  Concept Shifts: 0
+
+Language: ZH
+  Divergence Level: MEDIUM
+  Total Shifts: 3
+  Word Order Shifts: 3
+  Concept Shifts: 0
+
+Language: AR
+  Divergence Level: LOW
+  Total Shifts: 1
+  Word Order Shifts: 1
+  Concept Shifts: 0
+
+Language: UK
+  Divergence Level: LOW
+  Total Shifts: 1
+  Word Order Shifts: 1
+  Concept Shifts: 0
+
+Language: ES
+  Divergence Level: LOW
+  Total Shifts: 1
+  Word Order Shifts: 1
+  Concept Shifts: 0
+
+Language: IT
+  Divergence Level: LOW
+  Total Shifts: 1
+  Word Order Shifts: 1
+  Concept Shifts: 0
+
+Language: RU
+  Divergence Level: LOW
+  Total Shifts: 1
+  Word Order Shifts: 1
+  Concept Shifts: 0

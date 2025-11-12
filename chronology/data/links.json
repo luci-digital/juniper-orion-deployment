@@ -1,0 +1,284 @@
+{
+  "0": [
+    {
+      "target_id": 37,
+      "target_filename": "Tabula_Peutingeriana_South_Illyria.jpg",
+      "score": 2,
+      "reasons": [
+        "Same region: South"
+      ]
+    }
+  ],
+  "8": [
+    {
+      "target_id": 13,
+      "target_filename": "Comparison_of_the_population_of_London_metropolitan_area_and_European_countries.png",
+      "score": 2,
+      "reasons": [
+        "Same region: Paris"
+      ]
+    },
+    {
+      "target_id": 31,
+      "target_filename": "Plan_de_Paris_vers_1530_Braun_Paris_St-Victor.jpg",
+      "score": 2,
+      "reasons": [
+        "Same region: Paris"
+      ]
+    }
+  ],
+  "13": [
+    {
+      "target_id": 8,
+      "target_filename": "Braun_Paris_HAAB.jpg",
+      "score": 2,
+      "reasons": [
+        "Same region: Paris"
+      ]
+    },
+    {
+      "target_id": 16,
+      "target_filename": "Europe_location_LUX.png",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    },
+    {
+      "target_id": 31,
+      "target_filename": "Plan_de_Paris_vers_1530_Braun_Paris_St-Victor.jpg",
+      "score": 2,
+      "reasons": [
+        "Same region: Paris"
+      ]
+    },
+    {
+      "target_id": 33,
+      "target_filename": "Satirical_map_of_Europe,_1877.jpg",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    },
+    {
+      "target_id": 48,
+      "target_filename": "21_of_'L'enseignement_pratique_de_la_géographie._Atlas,_cartes,_textes_&_questionnaires_..._Cours_móyen'_(11123699306).jpg",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    },
+    {
+      "target_id": 60,
+      "target_filename": "Metropolitan_GDPs_of_Europe_2018.svg",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    }
+  ],
+  "16": [
+    {
+      "target_id": 13,
+      "target_filename": "Comparison_of_the_population_of_London_metropolitan_area_and_European_countries.png",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    },
+    {
+      "target_id": 33,
+      "target_filename": "Satirical_map_of_Europe,_1877.jpg",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    },
+    {
+      "target_id": 48,
+      "target_filename": "21_of_'L'enseignement_pratique_de_la_géographie._Atlas,_cartes,_textes_&_questionnaires_..._Cours_móyen'_(11123699306).jpg",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    },
+    {
+      "target_id": 60,
+      "target_filename": "Metropolitan_GDPs_of_Europe_2018.svg",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    }
+  ],
+  "24": [
+    {
+      "target_id": 27,
+      "target_filename": "Luhansk_Ukraine.png",
+      "score": 2,
+      "reasons": [
+        "Same region: UK"
+      ]
+    }
+  ],
+  "26": [
+    {
+      "target_id": 51,
+      "target_filename": "Austria-Hungary_-_with_excursions_to_Cetinje,_Belgrade,_and_Bucharest_-_handbook_for_travellers_(1911)_(14778900605).jpg",
+      "score": 2,
+      "reasons": [
+        "Same region: Linz"
+      ]
+    }
+  ],
+  "27": [
+    {
+      "target_id": 24,
+      "target_filename": "Hecataeus_world_map-ukr.svg",
+      "score": 2,
+      "reasons": [
+        "Same region: UK"
+      ]
+    }
+  ],
+  "31": [
+    {
+      "target_id": 8,
+      "target_filename": "Braun_Paris_HAAB.jpg",
+      "score": 2,
+      "reasons": [
+        "Same region: Paris"
+      ]
+    },
+    {
+      "target_id": 13,
+      "target_filename": "Comparison_of_the_population_of_London_metropolitan_area_and_European_countries.png",
+      "score": 2,
+      "reasons": [
+        "Same region: Paris"
+      ]
+    }
+  ],
+  "33": [
+    {
+      "target_id": 13,
+      "target_filename": "Comparison_of_the_population_of_London_metropolitan_area_and_European_countries.png",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    },
+    {
+      "target_id": 16,
+      "target_filename": "Europe_location_LUX.png",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    },
+    {
+      "target_id": 48,
+      "target_filename": "21_of_'L'enseignement_pratique_de_la_géographie._Atlas,_cartes,_textes_&_questionnaires_..._Cours_móyen'_(11123699306).jpg",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    },
+    {
+      "target_id": 60,
+      "target_filename": "Metropolitan_GDPs_of_Europe_2018.svg",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    }
+  ],
+  "37": [
+    {
+      "target_id": 0,
+      "target_filename": "1791_map_by_Moore,_crop_on_Southeast_Asia.jpg",
+      "score": 2,
+      "reasons": [
+        "Same region: South"
+      ]
+    }
+  ],
+  "48": [
+    {
+      "target_id": 13,
+      "target_filename": "Comparison_of_the_population_of_London_metropolitan_area_and_European_countries.png",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    },
+    {
+      "target_id": 16,
+      "target_filename": "Europe_location_LUX.png",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    },
+    {
+      "target_id": 33,
+      "target_filename": "Satirical_map_of_Europe,_1877.jpg",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    },
+    {
+      "target_id": 60,
+      "target_filename": "Metropolitan_GDPs_of_Europe_2018.svg",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    }
+  ],
+  "51": [
+    {
+      "target_id": 26,
+      "target_filename": "Karte_Österreich_Linz.png",
+      "score": 2,
+      "reasons": [
+        "Same region: Linz"
+      ]
+    }
+  ],
+  "60": [
+    {
+      "target_id": 13,
+      "target_filename": "Comparison_of_the_population_of_London_metropolitan_area_and_European_countries.png",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    },
+    {
+      "target_id": 16,
+      "target_filename": "Europe_location_LUX.png",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    },
+    {
+      "target_id": 33,
+      "target_filename": "Satirical_map_of_Europe,_1877.jpg",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    },
+    {
+      "target_id": 48,
+      "target_filename": "21_of_'L'enseignement_pratique_de_la_géographie._Atlas,_cartes,_textes_&_questionnaires_..._Cours_móyen'_(11123699306).jpg",
+      "score": 2,
+      "reasons": [
+        "Same region: Europe"
+      ]
+    }
+  ]
+}

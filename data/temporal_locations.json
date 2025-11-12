@@ -1,0 +1,283 @@
+{
+  "locations": [
+    {
+      "map_filename": "1791_map_by_Moore,_crop_on_Southeast_Asia.jpg",
+      "location_name": "Asia",
+      "longitude": 100.0,
+      "latitude": 35.0,
+      "date": 0,
+      "dates": [],
+      "confidence": "medium",
+      "source_text": "Asia"
+    },
+    {
+      "map_filename": "Braun_Paris_HAAB.jpg",
+      "location_name": "Paris",
+      "longitude": 2.3,
+      "latitude": 48.9,
+      "date": 0,
+      "dates": [],
+      "confidence": "medium",
+      "source_text": "Paris"
+    },
+    {
+      "map_filename": "Budapesti_62-es_villamos_útvonala.svg",
+      "location_name": "Budapest",
+      "longitude": 19.0,
+      "latitude": 47.5,
+      "date": 0,
+      "dates": [],
+      "confidence": "high",
+      "source_text": "Budapest"
+    },
+    {
+      "map_filename": "Chieti_2011_by-RaBoe_036.jpg",
+      "location_name": "Chieti",
+      "longitude": 14.2,
+      "latitude": 42.4,
+      "date": 0,
+      "dates": [],
+      "confidence": "high",
+      "source_text": "Chieti"
+    },
+    {
+      "map_filename": "Comparison_of_the_population_of_London_metropolitan_area_and_European_countries.png",
+      "location_name": "Europe",
+      "longitude": 10.0,
+      "latitude": 50.0,
+      "date": 0,
+      "dates": [],
+      "confidence": "high",
+      "source_text": "Europe"
+    },
+    {
+      "map_filename": "Europe_location_LUX.png",
+      "location_name": "Europe",
+      "longitude": 10.0,
+      "latitude": 50.0,
+      "date": 0,
+      "dates": [],
+      "confidence": "high",
+      "source_text": "Europe"
+    },
+    {
+      "map_filename": "France_geological_map-fr.svg",
+      "location_name": "France",
+      "longitude": 2.2,
+      "latitude": 46.2,
+      "date": 0,
+      "dates": [],
+      "confidence": "high",
+      "source_text": "France"
+    },
+    {
+      "map_filename": "Germany_Laender_Bayern.png",
+      "location_name": "Germany",
+      "longitude": 10.5,
+      "latitude": 51.5,
+      "date": 0,
+      "dates": [],
+      "confidence": "high",
+      "source_text": "Germany"
+    },
+    {
+      "map_filename": "Hecataeus_world_map-ukr.svg",
+      "location_name": "Uk",
+      "longitude": -1.0,
+      "latitude": 52.0,
+      "date": 0,
+      "dates": [],
+      "confidence": "medium",
+      "source_text": "UK"
+    },
+    {
+      "map_filename": "Karte_Österreich_Linz.png",
+      "location_name": "Linz",
+      "longitude": 14.3,
+      "latitude": 48.3,
+      "date": 0,
+      "dates": [],
+      "confidence": "medium",
+      "source_text": "Linz"
+    },
+    {
+      "map_filename": "Luhansk_Ukraine.png",
+      "location_name": "Uk",
+      "longitude": -1.0,
+      "latitude": 52.0,
+      "date": 0,
+      "dates": [],
+      "confidence": "medium",
+      "source_text": "UK"
+    },
+    {
+      "map_filename": "Plan_de_Paris_vers_1530_Braun_Paris_St-Victor.jpg",
+      "location_name": "Paris",
+      "longitude": 2.3,
+      "latitude": 48.9,
+      "date": 0,
+      "dates": [],
+      "confidence": "medium",
+      "source_text": "Paris"
+    },
+    {
+      "map_filename": "Satirical_map_of_Europe,_1877.jpg",
+      "location_name": "Europe",
+      "longitude": 10.0,
+      "latitude": 50.0,
+      "date": 0,
+      "dates": [],
+      "confidence": "high",
+      "source_text": "Europe"
+    },
+    {
+      "map_filename": "Switzerland_-_map_primary_road_2.svg",
+      "location_name": "Switzerland",
+      "longitude": 8.2,
+      "latitude": 46.8,
+      "date": 0,
+      "dates": [],
+      "confidence": "high",
+      "source_text": "Switzerland"
+    },
+    {
+      "map_filename": "Accipe..._lector..._Suetiae,_Gotiae,_Norvegiae,_Prusiae,_Pomeraniae,_ducatus_Megapolensis,_Frisiae,_Geldriae,_Altae_Marchiae,_Lusatiae..._descriptionem..._-_btv1b53093871d_(2_of_2).jpg",
+      "location_name": "Usa",
+      "longitude": -98.6,
+      "latitude": 39.8,
+      "date": 1562,
+      "dates": [
+        1562
+      ],
+      "confidence": "medium",
+      "source_text": "USA"
+    },
+    {
+      "map_filename": "Crop_from_a_French_map_of_Madagascar,_dated_1670-1710.jpg",
+      "location_name": "Madagascar",
+      "longitude": 46.7,
+      "latitude": -18.9,
+      "date": 1710,
+      "dates": [
+        1710
+      ],
+      "confidence": "high",
+      "source_text": "Madagascar"
+    },
+    {
+      "map_filename": "Schotel_met_kaart_van_Japan_en_opschrift,_NG-1979-19-1.jpg",
+      "location_name": "Japan",
+      "longitude": 138.6,
+      "latitude": 36.2,
+      "date": 1844,
+      "dates": [
+        1844,
+        1979
+      ],
+      "confidence": "medium",
+      "source_text": "Japan"
+    },
+    {
+      "map_filename": "Franco-Prussian-War_Phase_3_deu_ger_all.svg",
+      "location_name": "Russia",
+      "longitude": 37.6,
+      "latitude": 55.8,
+      "date": 1871,
+      "dates": [
+        1871
+      ],
+      "confidence": "high",
+      "source_text": "Russia"
+    },
+    {
+      "map_filename": "21_of_'L'enseignement_pratique_de_la_géographie._Atlas,_cartes,_textes_&_questionnaires_..._Cours_móyen'_(11123699306).jpg",
+      "location_name": "Europe",
+      "longitude": 10.0,
+      "latitude": 50.0,
+      "date": 1878,
+      "dates": [
+        1878
+      ],
+      "confidence": "high",
+      "source_text": "Europe"
+    },
+    {
+      "map_filename": "Austria-Hungary_-_with_excursions_to_Cetinje,_Belgrade,_and_Bucharest_-_handbook_for_travellers_(1911)_(14778900605).jpg",
+      "location_name": "Hungary",
+      "longitude": 19.5,
+      "latitude": 47.5,
+      "date": 1911,
+      "dates": [
+        1911
+      ],
+      "confidence": "high",
+      "source_text": "Hungary"
+    },
+    {
+      "map_filename": "1915_map_-_Les_Balkans.jpg",
+      "location_name": "Balkans",
+      "longitude": 20.0,
+      "latitude": 44.0,
+      "date": 1915,
+      "dates": [
+        1915
+      ],
+      "confidence": "high",
+      "source_text": "Balkans"
+    },
+    {
+      "map_filename": "Madeira_71.jpg",
+      "location_name": "Madeira",
+      "longitude": -16.9,
+      "latitude": 32.7,
+      "date": 1976,
+      "dates": [
+        1976
+      ],
+      "confidence": "high",
+      "source_text": "Madeira (US, 1976)"
+    },
+    {
+      "map_filename": "Pyrenees_topographic_map-de.svg",
+      "location_name": "Pyrenees",
+      "longitude": 1.0,
+      "latitude": 42.7,
+      "date": 2007,
+      "dates": [
+        2007
+      ],
+      "confidence": "high",
+      "source_text": "Pyrenees_topographic_map-de.svg"
+    },
+    {
+      "map_filename": "Metropolitan_GDPs_of_Europe_2018.svg",
+      "location_name": "Europe",
+      "longitude": 10.0,
+      "latitude": 50.0,
+      "date": 2018,
+      "dates": [
+        2018
+      ],
+      "confidence": "high",
+      "source_text": "Europe"
+    },
+    {
+      "map_filename": "Machakos_OSM_Cyc.png",
+      "location_name": "Machakos",
+      "longitude": 37.3,
+      "latitude": -1.5,
+      "date": 2022,
+      "dates": [
+        2022
+      ],
+      "confidence": "high",
+      "source_text": "Machakos"
+    }
+  ],
+  "total_locations": 25,
+  "locations_with_dates": 11,
+  "date_range": {
+    "min": 1562,
+    "max": 2022
+  }
+}

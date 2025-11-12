@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_233792feae0352c46c1006995d9b9b89 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iso8601-js-period@0.2.1/iso8601.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-timedimension@1.1.1/dist/leaflet.timedimension.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-timedimension@1.1.1/dist/leaflet.timedimension.control.css"/>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_233792feae0352c46c1006995d9b9b89" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_233792feae0352c46c1006995d9b9b89 = L.map(
+                "map_233792feae0352c46c1006995d9b9b89",
+                {
+                    center: [34.39090909090909, 18.654545454545453],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 3,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_8a9bb9874de222d8b0f22005385b5b6b = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_8a9bb9874de222d8b0f22005385b5b6b.addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            var circle_marker_89169ccb2ad72becaf8975393d3aca68 = L.circleMarker(
+                [39.8, -98.6],
+                {"bubblingMouseEvents": true, "color": "#440154", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#440154", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+        var popup_12b01584b21319cb04a902021e04b43f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9ecc9b637e48a02f833a865cc9ae1165 = $(`<div id="html_9ecc9b637e48a02f833a865cc9ae1165" style="width: 100.0%; height: 100.0%;">             <b>Usa</b><br>             Map: Accipe..._lector..._Suetiae,_G...<br>             Date: 1562<br>             Source: USA...             </div>`)[0];
+                popup_12b01584b21319cb04a902021e04b43f.setContent(html_9ecc9b637e48a02f833a865cc9ae1165);
+            
+        
+
+        circle_marker_89169ccb2ad72becaf8975393d3aca68.bindPopup(popup_12b01584b21319cb04a902021e04b43f)
+        ;
+
+        
+    
+    
+            circle_marker_89169ccb2ad72becaf8975393d3aca68.bindTooltip(
+                `<div>
+                     Usa (1562)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ca15974bc8388e0c274e7567fe1b98a7 = L.circleMarker(
+                [39.8, -98.6],
+                {"bubblingMouseEvents": true, "color": "#440154", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#440154", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 1}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            var circle_marker_4872fb67c44bb62abfb618a4f61b18bb = L.circleMarker(
+                [-18.9, 46.7],
+                {"bubblingMouseEvents": true, "color": "#31688e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#31688e", "fillOpacity": 0.5252173913043477, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+        var popup_b284e138164b021dd94e7a7cab3f4c24 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a00c1715867405740a7807cf6f3f9fd3 = $(`<div id="html_a00c1715867405740a7807cf6f3f9fd3" style="width: 100.0%; height: 100.0%;">             <b>Madagascar</b><br>             Map: Crop_from_a_French_map_of_Mada...<br>             Date: 1710<br>             Source: Madagascar...             </div>`)[0];
+                popup_b284e138164b021dd94e7a7cab3f4c24.setContent(html_a00c1715867405740a7807cf6f3f9fd3);
+            
+        
+
+        circle_marker_4872fb67c44bb62abfb618a4f61b18bb.bindPopup(popup_b284e138164b021dd94e7a7cab3f4c24)
+        ;
+
+        
+    
+    
+            circle_marker_4872fb67c44bb62abfb618a4f61b18bb.bindTooltip(
+                `<div>
+                     Madagascar (1710)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fa07c4940be4bc3a73fad83ced17135e = L.circleMarker(
+                [-18.9, 46.7],
+                {"bubblingMouseEvents": true, "color": "#31688e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#31688e", "fillOpacity": 0.15756521739130433, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 1}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            var circle_marker_34cfc5948db1edad04d8be20424a2a32 = L.circleMarker(
+                [36.2, 138.6],
+                {"bubblingMouseEvents": true, "color": "#35b779", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#35b779", "fillOpacity": 0.7291304347826086, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+        var popup_1f40f60f875a78b8d6d8665365587e65 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2e6d1400946d12f3ee4a36f06ef22435 = $(`<div id="html_2e6d1400946d12f3ee4a36f06ef22435" style="width: 100.0%; height: 100.0%;">             <b>Japan</b><br>             Map: Schotel_met_kaart_van_Japan_en...<br>             Date: 1844<br>             Source: Japan...             </div>`)[0];
+                popup_1f40f60f875a78b8d6d8665365587e65.setContent(html_2e6d1400946d12f3ee4a36f06ef22435);
+            
+        
+
+        circle_marker_34cfc5948db1edad04d8be20424a2a32.bindPopup(popup_1f40f60f875a78b8d6d8665365587e65)
+        ;
+
+        
+    
+    
+            circle_marker_34cfc5948db1edad04d8be20424a2a32.bindTooltip(
+                `<div>
+                     Japan (1844)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_39f2b52d883f0ac63a812b4629414e3d = L.circleMarker(
+                [36.2, 138.6],
+                {"bubblingMouseEvents": true, "color": "#35b779", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#35b779", "fillOpacity": 0.21873913043478257, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 1}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            var circle_marker_a0697c33ad5fbd43c5d5013ef28cd337 = L.circleMarker(
+                [55.8, 37.6],
+                {"bubblingMouseEvents": true, "color": "#35b779", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#35b779", "fillOpacity": 0.7702173913043477, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+        var popup_d405a81a68ea3bcb0b51d12a595e9787 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_00ec551b497d421d627f0b9ae2d4157c = $(`<div id="html_00ec551b497d421d627f0b9ae2d4157c" style="width: 100.0%; height: 100.0%;">             <b>Russia</b><br>             Map: Franco-Prussian-War_Phase_3_de...<br>             Date: 1871<br>             Source: Russia...             </div>`)[0];
+                popup_d405a81a68ea3bcb0b51d12a595e9787.setContent(html_00ec551b497d421d627f0b9ae2d4157c);
+            
+        
+
+        circle_marker_a0697c33ad5fbd43c5d5013ef28cd337.bindPopup(popup_d405a81a68ea3bcb0b51d12a595e9787)
+        ;
+
+        
+    
+    
+            circle_marker_a0697c33ad5fbd43c5d5013ef28cd337.bindTooltip(
+                `<div>
+                     Russia (1871)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_95dd25ed76e73cdd7416d93ffce7e652 = L.circleMarker(
+                [55.8, 37.6],
+                {"bubblingMouseEvents": true, "color": "#35b779", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#35b779", "fillOpacity": 0.2310652173913043, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 1}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            var circle_marker_47d5a4b401816aaeb11663e6538f0d81 = L.circleMarker(
+                [50.0, 10.0],
+                {"bubblingMouseEvents": true, "color": "#35b779", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#35b779", "fillOpacity": 0.7808695652173913, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+        var popup_8268715aafbbf63532089eebd3207012 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_29ca1bcef4005777487f546f3176388b = $(`<div id="html_29ca1bcef4005777487f546f3176388b" style="width: 100.0%; height: 100.0%;">             <b>Europe</b><br>             Map: 21_of_'L'enseignement_pratique...<br>             Date: 1878<br>             Source: Europe...             </div>`)[0];
+                popup_8268715aafbbf63532089eebd3207012.setContent(html_29ca1bcef4005777487f546f3176388b);
+            
+        
+
+        circle_marker_47d5a4b401816aaeb11663e6538f0d81.bindPopup(popup_8268715aafbbf63532089eebd3207012)
+        ;
+
+        
+    
+    
+            circle_marker_47d5a4b401816aaeb11663e6538f0d81.bindTooltip(
+                `<div>
+                     Europe (1878)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ac4843279fab9a386d0fcc8a52e20184 = L.circleMarker(
+                [50.0, 10.0],
+                {"bubblingMouseEvents": true, "color": "#35b779", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#35b779", "fillOpacity": 0.23426086956521736, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 1}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            var circle_marker_3f9e8550403597d1900a5114f5d15137 = L.circleMarker(
+                [47.5, 19.5],
+                {"bubblingMouseEvents": true, "color": "#fde725", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fde725", "fillOpacity": 0.8310869565217391, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+        var popup_a3121177d2f3f53563b124c977269aab = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9c61f9c0301c42dad026ca79ce3ce40b = $(`<div id="html_9c61f9c0301c42dad026ca79ce3ce40b" style="width: 100.0%; height: 100.0%;">             <b>Hungary</b><br>             Map: Austria-Hungary_-_with_excursi...<br>             Date: 1911<br>             Source: Hungary...             </div>`)[0];
+                popup_a3121177d2f3f53563b124c977269aab.setContent(html_9c61f9c0301c42dad026ca79ce3ce40b);
+            
+        
+
+        circle_marker_3f9e8550403597d1900a5114f5d15137.bindPopup(popup_a3121177d2f3f53563b124c977269aab)
+        ;
+
+        
+    
+    
+            circle_marker_3f9e8550403597d1900a5114f5d15137.bindTooltip(
+                `<div>
+                     Hungary (1911)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5430ab8c2bfa49e5f77e7ba72f5ea26d = L.circleMarker(
+                [47.5, 19.5],
+                {"bubblingMouseEvents": true, "color": "#fde725", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fde725", "fillOpacity": 0.24932608695652173, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 1}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            var circle_marker_20f8375a71a0e7ca5eecbf1013628ed0 = L.circleMarker(
+                [44.0, 20.0],
+                {"bubblingMouseEvents": true, "color": "#fde725", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fde725", "fillOpacity": 0.8371739130434783, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+        var popup_820166fcb91e772e7d4071ee2319130a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_74e022e8478adf7cf8860f68edfbcb7e = $(`<div id="html_74e022e8478adf7cf8860f68edfbcb7e" style="width: 100.0%; height: 100.0%;">             <b>Balkans</b><br>             Map: 1915_map_-_Les_Balkans.jpg...<br>             Date: 1915<br>             Source: Balkans...             </div>`)[0];
+                popup_820166fcb91e772e7d4071ee2319130a.setContent(html_74e022e8478adf7cf8860f68edfbcb7e);
+            
+        
+
+        circle_marker_20f8375a71a0e7ca5eecbf1013628ed0.bindPopup(popup_820166fcb91e772e7d4071ee2319130a)
+        ;
+
+        
+    
+    
+            circle_marker_20f8375a71a0e7ca5eecbf1013628ed0.bindTooltip(
+                `<div>
+                     Balkans (1915)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_40e77ba31fcc6db6a7367e88f1b9cf59 = L.circleMarker(
+                [44.0, 20.0],
+                {"bubblingMouseEvents": true, "color": "#fde725", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fde725", "fillOpacity": 0.2511521739130435, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 1}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            var circle_marker_fb8296cfa49ac97a693eb91629407dd3 = L.circleMarker(
+                [32.7, -16.9],
+                {"bubblingMouseEvents": true, "color": "#fde725", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fde725", "fillOpacity": 0.9299999999999999, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+        var popup_649f8460606583a9608b267f9ed1a9ca = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_043a513e2d6571b123864851c60bba20 = $(`<div id="html_043a513e2d6571b123864851c60bba20" style="width: 100.0%; height: 100.0%;">             <b>Madeira</b><br>             Map: Madeira_71.jpg...<br>             Date: 1976<br>             Source: Madeira (US, 1976)...             </div>`)[0];
+                popup_649f8460606583a9608b267f9ed1a9ca.setContent(html_043a513e2d6571b123864851c60bba20);
+            
+        
+
+        circle_marker_fb8296cfa49ac97a693eb91629407dd3.bindPopup(popup_649f8460606583a9608b267f9ed1a9ca)
+        ;
+
+        
+    
+    
+            circle_marker_fb8296cfa49ac97a693eb91629407dd3.bindTooltip(
+                `<div>
+                     Madeira (1976)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_eefbe1236d50dc14ab6a82d1c2378034 = L.circleMarker(
+                [32.7, -16.9],
+                {"bubblingMouseEvents": true, "color": "#fde725", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fde725", "fillOpacity": 0.27899999999999997, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 1}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            var circle_marker_46451c2239ecb4c62de59c3d2896081f = L.circleMarker(
+                [42.7, 1.0],
+                {"bubblingMouseEvents": true, "color": "#fde725", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fde725", "fillOpacity": 0.9771739130434782, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+        var popup_2ab34a8af21152385e433d3ee5ca8a74 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d15076e95d48da8ff8345d2d41c45a94 = $(`<div id="html_d15076e95d48da8ff8345d2d41c45a94" style="width: 100.0%; height: 100.0%;">             <b>Pyrenees</b><br>             Map: Pyrenees_topographic_map-de.sv...<br>             Date: 2007<br>             Source: Pyrenees_topographic_map-de.svg...             </div>`)[0];
+                popup_2ab34a8af21152385e433d3ee5ca8a74.setContent(html_d15076e95d48da8ff8345d2d41c45a94);
+            
+        
+
+        circle_marker_46451c2239ecb4c62de59c3d2896081f.bindPopup(popup_2ab34a8af21152385e433d3ee5ca8a74)
+        ;
+
+        
+    
+    
+            circle_marker_46451c2239ecb4c62de59c3d2896081f.bindTooltip(
+                `<div>
+                     Pyrenees (2007)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e6bcc8c88f86004de07b651474712188 = L.circleMarker(
+                [42.7, 1.0],
+                {"bubblingMouseEvents": true, "color": "#fde725", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fde725", "fillOpacity": 0.29315217391304343, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 1}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            var circle_marker_52ee76d97fd006943d9ce3e08e2b5c97 = L.circleMarker(
+                [50.0, 10.0],
+                {"bubblingMouseEvents": true, "color": "#fde725", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fde725", "fillOpacity": 0.9939130434782608, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+        var popup_1d3e9b1652bac9c2fdae1b9dc8538432 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_623764098add9ee8515e42fa6c219902 = $(`<div id="html_623764098add9ee8515e42fa6c219902" style="width: 100.0%; height: 100.0%;">             <b>Europe</b><br>             Map: Metropolitan_GDPs_of_Europe_20...<br>             Date: 2018<br>             Source: Europe...             </div>`)[0];
+                popup_1d3e9b1652bac9c2fdae1b9dc8538432.setContent(html_623764098add9ee8515e42fa6c219902);
+            
+        
+
+        circle_marker_52ee76d97fd006943d9ce3e08e2b5c97.bindPopup(popup_1d3e9b1652bac9c2fdae1b9dc8538432)
+        ;
+
+        
+    
+    
+            circle_marker_52ee76d97fd006943d9ce3e08e2b5c97.bindTooltip(
+                `<div>
+                     Europe (2018)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_233af6a1c0051eb0aba81d96e3039cb5 = L.circleMarker(
+                [50.0, 10.0],
+                {"bubblingMouseEvents": true, "color": "#fde725", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fde725", "fillOpacity": 0.29817391304347823, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 1}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            var circle_marker_5132ed1160212165105b69cad3b7d5bf = L.circleMarker(
+                [-1.5, 37.3],
+                {"bubblingMouseEvents": true, "color": "#fde725", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fde725", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+        var popup_c26ee662a35ac77aa1ceebed520f0d0f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5f7edb2fa92dec6a966fe95a45f6d972 = $(`<div id="html_5f7edb2fa92dec6a966fe95a45f6d972" style="width: 100.0%; height: 100.0%;">             <b>Machakos</b><br>             Map: Machakos_OSM_Cyc.png...<br>             Date: 2022<br>             Source: Machakos...             </div>`)[0];
+                popup_c26ee662a35ac77aa1ceebed520f0d0f.setContent(html_5f7edb2fa92dec6a966fe95a45f6d972);
+            
+        
+
+        circle_marker_5132ed1160212165105b69cad3b7d5bf.bindPopup(popup_c26ee662a35ac77aa1ceebed520f0d0f)
+        ;
+
+        
+    
+    
+            circle_marker_5132ed1160212165105b69cad3b7d5bf.bindTooltip(
+                `<div>
+                     Machakos (2022)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4bc11238d3e671b2cc04bbb2313d28f7 = L.circleMarker(
+                [-1.5, 37.3],
+                {"bubblingMouseEvents": true, "color": "#fde725", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fde725", "fillOpacity": 0.3, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15, "stroke": true, "weight": 1}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            var poly_line_a43e86b96ddeba8a5ee0a9e734b28961 = L.polyline(
+                [[55.8, 37.6], [50.0, 10.0]],
+                {"bubblingMouseEvents": true, "color": "#35b779", "dashArray": "5, 5", "dashOffset": null, "fill": false, "fillColor": "#35b779", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.40152173913043476, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            var poly_line_8a14221d954ff3c63a30aca52f4b662a = L.polyline(
+                [[50.0, 10.0], [47.5, 19.5]],
+                {"bubblingMouseEvents": true, "color": "#35b779", "dashArray": "5, 5", "dashOffset": null, "fill": false, "fillColor": "#35b779", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.40608695652173915, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            var poly_line_57e88c10c5a166acc384b5f665a4c1b3 = L.polyline(
+                [[47.5, 19.5], [44.0, 20.0]],
+                {"bubblingMouseEvents": true, "color": "#fde725", "dashArray": "5, 5", "dashOffset": null, "fill": false, "fillColor": "#fde725", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.4276086956521739, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            var poly_line_6f54576177743f9b1872376ae3bb6938 = L.polyline(
+                [[44.0, 20.0], [32.7, -16.9]],
+                {"bubblingMouseEvents": true, "color": "#fde725", "dashArray": "5, 5", "dashOffset": null, "fill": false, "fillColor": "#fde725", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.43021739130434783, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            var poly_line_06493c34839c547fe7d933f5537f90dd = L.polyline(
+                [[32.7, -16.9], [42.7, 1.0]],
+                {"bubblingMouseEvents": true, "color": "#fde725", "dashArray": "5, 5", "dashOffset": null, "fill": false, "fillColor": "#fde725", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.47000000000000003, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            var poly_line_d439400a415521af1797a3337a4e19fd = L.polyline(
+                [[42.7, 1.0], [50.0, 10.0]],
+                {"bubblingMouseEvents": true, "color": "#fde725", "dashArray": "5, 5", "dashOffset": null, "fill": false, "fillColor": "#fde725", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.4902173913043478, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+    
+            L.Control.TimeDimensionCustom = L.Control.TimeDimension.extend({
+                _getDisplayDateFormat: function(date){
+                    var newdate = new moment(date);
+                    console.log(newdate)
+                    return newdate.format("YYYY-MM-DD HH:mm:ss");
+                }
+            });
+            map_233792feae0352c46c1006995d9b9b89.timeDimension = L.timeDimension(
+                {
+                    period: "P10Y",
+                }
+            );
+            var timeDimensionControl = new L.Control.TimeDimensionCustom(
+                {
+  "position": "bottomleft",
+  "minSpeed": 0.1,
+  "maxSpeed": 10,
+  "autoPlay": true,
+  "loopButton": false,
+  "timeSliderDragUpdate": false,
+  "speedSlider": true,
+  "playerOptions": {
+  "transitionTime": 200,
+  "loop": true,
+  "startOver": true,
+},
+}
+            );
+            map_233792feae0352c46c1006995d9b9b89.addControl(this.timeDimensionControl);
+
+            var geoJsonLayer = L.geoJson({"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [-98.6, 39.8]}, "properties": {"time": "1562-01-01", "name": "Usa", "popup": "Usa (1562)"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [46.7, -18.9]}, "properties": {"time": "1710-01-01", "name": "Madagascar", "popup": "Madagascar (1710)"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [138.6, 36.2]}, "properties": {"time": "1844-01-01", "name": "Japan", "popup": "Japan (1844)"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [37.6, 55.8]}, "properties": {"time": "1871-01-01", "name": "Russia", "popup": "Russia (1871)"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.0, 50.0]}, "properties": {"time": "1878-01-01", "name": "Europe", "popup": "Europe (1878)"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [19.5, 47.5]}, "properties": {"time": "1911-01-01", "name": "Hungary", "popup": "Hungary (1911)"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [20.0, 44.0]}, "properties": {"time": "1915-01-01", "name": "Balkans", "popup": "Balkans (1915)"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.9, 32.7]}, "properties": {"time": "1976-01-01", "name": "Madeira", "popup": "Madeira (1976)"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [1.0, 42.7]}, "properties": {"time": "2007-01-01", "name": "Pyrenees", "popup": "Pyrenees (2007)"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.0, 50.0]}, "properties": {"time": "2018-01-01", "name": "Europe", "popup": "Europe (2018)"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [37.3, -1.5]}, "properties": {"time": "2022-01-01", "name": "Machakos", "popup": "Machakos (2022)"}}]}, {
+                    pointToLayer: function (feature, latLng) {
+                        if (feature.properties.icon == 'marker') {
+                            if(feature.properties.iconstyle){
+                                return new L.Marker(latLng, {
+                                    icon: L.icon(feature.properties.iconstyle)});
+                            }
+                            //else
+                            return new L.Marker(latLng);
+                        }
+                        if (feature.properties.icon == 'circle') {
+                            if (feature.properties.iconstyle) {
+                                return new L.circleMarker(latLng, feature.properties.iconstyle)
+                                };
+                            //else
+                            return new L.circleMarker(latLng);
+                        }
+                        //else
+
+                        return new L.Marker(latLng);
+                    },
+                    style: function (feature) {
+                        return feature.properties.style;
+                    },
+                    onEachFeature: function(feature, layer) {
+                        if (feature.properties.popup) {
+                        layer.bindPopup(feature.properties.popup);
+                        }
+                        if (feature.properties.tooltip) {
+                        layer.bindTooltip(feature.properties.tooltip);
+                        }
+                    }
+                })
+
+            var timestamped_geo_json_6c276b1ba6aac8df4acba17ed70792b8 = L.timeDimension.layer.geoJson(
+                geoJsonLayer,
+                {
+                    updateTimeDimension: true,
+                    addlastPoint: true,
+                    duration: "P5Y",
+                }
+            ).addTo(map_233792feae0352c46c1006995d9b9b89);
+        
+</script>
+</html>
