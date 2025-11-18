@@ -1,0 +1,203 @@
+# Lucia AI Configuration
+# Consolidated configuration for dis_maops integration
+
+system:
+  name: "Lucia AI"
+  version: "2.0.0"
+  environment: "dis_maops"
+  root_path: "/Users/darylharr/Desktop/dis_maops/lucia_ai"
+
+# Inference Engine Configuration
+inference:
+  default_backend: "ollama"
+  backends:
+    ollama:
+      enabled: true
+      base_url: "http://localhost:11434"
+      models:
+        - "mistral:latest"
+        - "llama3.2:latest"
+        - "qwen2.5-coder:latest"
+        - "codegem
+
+ma:latest"
+        - "phi3.5:latest"
+
+    transformers:
+      enabled: true
+      device: "auto"  # auto, mps, cuda, rocm, cpu
+      cache_dir: "${LUCIA_ROOT}/models/transformers"
+
+    openai:
+      enabled: true
+      api_key: "${OPENAI_API_KEY}"
+      models:
+        - "gpt-4o"
+        - "gpt-4o-mini"
+        - "o1-preview"
+        - "o1-mini"
+
+    anthropic:
+      enabled: true
+      api_key: "${ANTHROPIC_API_KEY}"
+      models:
+        - "claude-sonnet-4"
+        - "claude-opus-4"
+        - "claude-haiku-4"
+
+  # Generation defaults
+  generation:
+    temperature: 0.7
+    max_tokens: 2048
+    top_p: 0.9
+    top_k: 40
+    frequency_penalty: 0.0
+    presence_penalty: 0.0
+    stream: true
+
+# Hardware Configuration
+hardware:
+  detection: "auto"
+  optimization: true
+  devices:
+    mps:
+      enabled: true
+      priority: 1
+    cuda:
+      enabled: true
+      priority: 2
+    rocm:
+      enabled: true
+      priority: 3
+    cpu:
+      enabled: true
+      priority: 4
+
+  memory:
+    batch_size: "auto"
+    max_memory_gb: 16
+    cache_size_mb: 2048
+
+# Agent Configuration
+agents:
+  servers:
+    basic:
+      enabled: true
+      host: "0.0.0.0"
+      port: 8090
+      workers: 4
+
+    openai:
+      enabled: true
+      host: "0.0.0.0"
+      port: 8091
+      workers: 4
+
+  # Agent capabilities
+  capabilities:
+    - inference
+    - memory
+    - voice
+    - avatar
+    - code_execution
+
+# Memory System Configuration
+memory:
+  vector_store:
+    enabled: true
+    provider: "qdrant"
+    url: "http://localhost:6333"
+    collection: "lucia_memory"
+    embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+    dimension: 384
+
+  redis:
+    enabled: true
+    url: "redis://localhost:6379"
+    db: 0
+    ttl: 3600
+
+  soul_threading:
+    enabled: true
+    identity_persistence: true
+    personality_profiles: "${LUCIA_ROOT}/data/personalities"
+
+# OpenAI Integration
+openai_integration:
+  enabled: true
+  server:
+    port: 3000
+    host: "0.0.0.0"
+
+  features:
+    voice: true
+    tts: true
+    avatars: true
+    whisper: true
+
+  elevenlabs:
+    enabled: true
+    api_key: "${ELEVENLABS_API_KEY}"
+    voice_id: "default"
+
+# MCP Integration
+mcp:
+  enabled: true
+  tools:
+    - lucia_infer
+    - lucia_agent
+    - lucia_memory_store
+    - lucia_memory_search
+
+  server:
+    command: "python3"
+    args:
+      - "${LUCIA_ROOT}/integrations/mcp/lucia_mcp_server.py"
+    cwd: "${LUCIA_ROOT}"
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "${LUCIA_ROOT}/logs/lucia.log"
+  max_bytes: 10485760  # 10MB
+  backup_count: 5
+  console: true
+
+# Performance Monitoring
+monitoring:
+  enabled: true
+  metrics:
+    prometheus:
+      enabled: true
+      port: 9090
+    grafana:
+      enabled: true
+      port: 3001
+
+  health_check:
+    enabled: true
+    interval: 30
+    endpoint: "/health"
+
+# Security
+security:
+  api_keys:
+    required: false
+    header: "X-API-Key"
+
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 60
+
+  cors:
+    enabled: true
+    origins:
+      - "http://localhost:*"
+      - "http://127.0.0.1:*"
+
+# Development Settings
+development:
+  debug: false
+  auto_reload: false
+  test_mode: false

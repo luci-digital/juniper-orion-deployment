@@ -1,0 +1,21 @@
+models:
+  loaded:
+    - gemma3:latest
+  preferred:
+    chat: gemma3:latest
+    code: qwen2.5-coder:1.5b
+    embeddings: nomic-embed-text
+    reasoning: gemma3:latest
+auto_load:
+  enabled: true
+  max_memory_gb: 8
+  preload_on_start:
+    - gemma3:latest
+lm_studio:
+  enabled: true
+  url: http://192.168.1.132:1234
+  preferred_models:
+    chat: gemma-3-4b-it-qat
+    code: deepseek-coder-6.7b-instruct
+    reasoning: deepseek-r1-distill-qwen-7b
+    fast: llama-3.2-1b-instruct

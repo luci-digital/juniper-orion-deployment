@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "lucia-filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/darylharr/Desktop/dis_maops/lucia_ai"
+      ]
+    },
+    "lucia-memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"]
+    },
+    "lucia-git": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-git",
+        "--repository",
+        "/Users/darylharr/Desktop/dis_maops/lucia_ai"
+      ]
+    },
+    "fetch": {
+      "command": "uvx",
+      "args": ["mcp-server-fetch"]
+    }
+  }
+}

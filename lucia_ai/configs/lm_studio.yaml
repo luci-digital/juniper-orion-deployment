@@ -1,0 +1,48 @@
+# LM Studio Configuration for Lucia AI
+# Local network LM Studio server integration
+
+lm_studio:
+  base_url: "http://192.168.1.132:1234/v1"
+  api_key: "lm-studio"  # LM Studio doesn't require a real API key
+  timeout: 120
+  
+  # Available models from your LM Studio server
+  models:
+    - id: "dans-personalityengine-v1.0.0-8b@q4_k_s"
+      name: "Dan's Personality Engine"
+      type: "chat"
+      context_length: 8192
+      
+    - id: "gemma-3-4b-it-qat"
+      name: "Gemma 3 4B Instruct"
+      type: "chat"
+      context_length: 8192
+      
+    - id: "text-embedding-nomic-embed-text-v1.5"
+      name: "Nomic Embed Text"
+      type: "embedding"
+      dimensions: 768
+      
+    - id: "minamila_-_llama_3_base_adult_impfeat_5ep_withsex"
+      name: "Llama 3 Base Adult"
+      type: "chat"
+      context_length: 8192
+  
+  # Default model for chat
+  default_chat_model: "gemma-3-4b-it-qat"
+  
+  # Default model for embeddings
+  default_embedding_model: "text-embedding-nomic-embed-text-v1.5"
+  
+  # Request settings
+  max_retries: 3
+  retry_delay: 1.0
+  stream: true
+  
+  # Generation parameters (can be overridden per request)
+  default_params:
+    temperature: 0.7
+    max_tokens: 2048
+    top_p: 0.95
+    frequency_penalty: 0.0
+    presence_penalty: 0.0

@@ -1,0 +1,80 @@
+# Lucia AI .dockerignore
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+*.md
+docs/
+CLAUDE.md
+LICENSE
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment files
+.env
+.env.*
+!.env.template
+
+# Logs (keep structure, not content)
+logs/*.log
+*.log
+
+# Data and models (too large)
+data/
+cache/
+models/*.ckpt
+models/*.pth
+models/*.bin
+models/*.safetensors
+
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+
+# Testing
+tests/
+test/
+*.test.py
+*.spec.js
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+
+# Temporary
+tmp/
+temp/
+*.tmp
+pids/
+
+# Archives
+archives/
+backups/
+*.tar
+*.tar.gz
+*.zip
