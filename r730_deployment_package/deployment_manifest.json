@@ -1,0 +1,34 @@
+{
+  "deployment": {
+    "system": "Dell PowerEdge R730 (CQ5QBM2)",
+    "hostname": "orion-stargate-r730",
+    "domain": "lucia-ai.internal",
+    "timestamp": "2025-11-18T20:00:32Z",
+    "installer": "JuniperOrionOS",
+    "base_os": "NixOS 24.11"
+  },
+  "hardware": {
+    "cpus": "2x Intel Xeon E5-2690 v4",
+    "ram": "384GB DDR4-2400",
+    "storage": "PERC H730 with 9 drives",
+    "nics": 8,
+    "power_supplies": 2
+  },
+  "network": {
+    "wan_interface": "eth0 (D0:94:66:24:96:7E)",
+    "lan_interface": "eth1 (D0:94:66:24:96:80)",
+    "management_interface": "eth2 (D0:94:66:24:96:82)",
+    "ipv4_lan": "192.168.100.1/24",
+    "ipv6_prefix": "2602:F674::/48",
+    "bgp_asn": 394955
+  },
+  "services": {
+    "router": "VyOS",
+    "bgp": "BIRD2 + FRR",
+    "dhcp": "ISC DHCP",
+    "dns": "Unbound",
+    "firewall": "nftables",
+    "monitoring": "Prometheus + Grafana",
+    "ai_agent": "Autonomous Network Agent (Python)"
+  }
+}

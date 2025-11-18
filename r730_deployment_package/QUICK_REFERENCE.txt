@@ -1,0 +1,94 @@
+# Dell R730 ORION - Quick Reference Commands
+
+## iDRAC Control via Redfish API
+
+# Power on
+curl -k -u root:calvin -X POST -H "Content-Type: application/json" \
+  -d '{"ResetType":"On"}' \
+  https://192.168.1.2/redfish/v1/Systems/System.Embedded.1/Actions/ComputerSystem.Reset
+
+# Power off (graceful)
+curl -k -u root:calvin -X POST -H "Content-Type: application/json" \
+  -d '{"ResetType":"GracefulShutdown"}' \
+  https://192.168.1.2/redfish/v1/Systems/System.Embedded.1/Actions/ComputerSystem.Reset
+
+# Restart
+curl -k -u root:calvin -X POST -H "Content-Type: application/json" \
+  -d '{"ResetType":"ForceRestart"}' \
+  https://192.168.1.2/redfish/v1/Systems/System.Embedded.1/Actions/ComputerSystem.Reset
+
+# Check power status
+curl -k -u root:calvin https://192.168.1.2/redfish/v1/Systems/System.Embedded.1 -s | \
+  python3 -c "import sys, json; print(json.load(sys.stdin)['PowerState'])"
+
+# Set PXE boot
+curl -k -u root:calvin -X PATCH -H "Content-Type: application/json" \
+  -d '{"Boot":{"BootSourceOverrideTarget":"Pxe","BootSourceOverrideEnabled":"Once"}}' \
+  https://192.168.1.2/redfish/v1/Systems/System.Embedded.1
+
+## System Management
+
+# SSH to management interface
+ssh admin@192.168.1.100
+
+# SSH to LAN interface
+ssh admin@192.168.100.1
+
+# Access iDRAC web console
+https://192.168.1.2
+
+## Network Commands
+
+# Show interfaces
+ip addr show
+
+# Show routes
+ip route show
+ip -6 route show
+
+# Test WAN connectivity
+ping -c 3 8.8.8.8
+ping6 -c 3 2001:4860:4860::8888
+
+# Check BGP status
+birdc show protocols
+birdc show route
+
+## Service Management
+
+# Restart networking
+systemctl restart systemd-networkd
+
+# Restart BGP
+systemctl restart bird2
+
+# Restart DHCP
+systemctl restart dhcpd4
+
+# Restart DNS
+systemctl restart unbound
+
+# Check AI agent
+systemctl status autonomous-agent
+journalctl -u autonomous-agent -f
+
+## Monitoring
+
+# Grafana dashboard
+http://192.168.100.1:3000
+
+# Prometheus metrics
+http://192.168.100.1:9090
+
+# System metrics
+htop
+iftop -i eth0
+
+## Firewall
+
+# Show nftables rules
+nft list ruleset
+
+# Show firewall counters
+nft list ruleset -a
+
