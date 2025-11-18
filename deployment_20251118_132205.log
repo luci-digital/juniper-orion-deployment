@@ -1,0 +1,24 @@
+[0;34m[INFO][0m 2025-11-18 13:22:05 - Starting deployment...
+[0;34m[INFO][0m 2025-11-18 13:22:05 - Log file: /Users/darylharr/Desktop/dis_maops/deployment_20251118_132205.log
+[0;34m[INFO][0m 2025-11-18 13:22:05 - Checking prerequisites...
+[0;34m[INFO][0m 2025-11-18 13:22:05 - ISO found: 261095424 bytes
+[0;32m[SUCCESS][0m 2025-11-18 13:22:05 - Prerequisites check passed
+[0;34m[INFO][0m 2025-11-18 13:22:05 - Checking R730 system status...
+[0;34m[INFO][0m 2025-11-18 13:22:12 - Power State: On
+[0;34m[INFO][0m 2025-11-18 13:22:12 - Health: Critical
+[0;32m[SUCCESS][0m 2025-11-18 13:22:12 - System status check complete
+[0;34m[INFO][0m 2025-11-18 13:22:12 - Generating NixOS installation script...
+[0;32m[SUCCESS][0m 2025-11-18 13:22:12 - NixOS installation script generated at /Users/darylharr/Desktop/dis_maops/nixos_auto_install.sh
+[0;34m[INFO][0m 2025-11-18 13:22:12 - Configuring boot to CD/Virtual Media...
+[0;32m[SUCCESS][0m 2025-11-18 13:22:18 - Boot configuration updated to CD (once)
+[0;34m[INFO][0m 2025-11-18 13:22:18 - Creating deployment summary...
+[0;32m[SUCCESS][0m 2025-11-18 13:22:18 - Deployment summary created: /Users/darylharr/Desktop/dis_maops/DEPLOYMENT_STATUS.md
+[0;32m[SUCCESS][0m 2025-11-18 13:22:18 - Deployment preparation complete!
+[0;34m[INFO][0m 2025-11-18 13:22:18 - 
+[0;34m[INFO][0m 2025-11-18 13:22:18 - Next steps:
+[0;34m[INFO][0m 2025-11-18 13:22:18 - 1. Review deployment summary: /Users/darylharr/Desktop/dis_maops/DEPLOYMENT_STATUS.md
+[0;34m[INFO][0m 2025-11-18 13:22:18 - 2. Mount ISO via iDRAC virtual media
+[0;34m[INFO][0m 2025-11-18 13:22:18 - 3. Reboot system to installer
+[0;34m[INFO][0m 2025-11-18 13:22:18 - 4. Run installation script: /Users/darylharr/Desktop/dis_maops/nixos_auto_install.sh
+[0;34m[INFO][0m 2025-11-18 13:22:18 - 
+[0;34m[INFO][0m 2025-11-18 13:22:18 - For detailed instructions, see: /Users/darylharr/Desktop/dis_maops/DEPLOYMENT_STATUS.md
