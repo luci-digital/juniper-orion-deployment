@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "dis-maops": {
+      "command": "python3",
+      "args": [
+        "/Users/darylharr/Desktop/dis_maops/mcp_server.py"
+      ],
+      "cwd": "/Users/darylharr/Desktop/dis_maops",
+      "env": {
+        "PYTHONPATH": "/Users/darylharr/Desktop/dis_maops"
+      }
+    }
+  }
+}
+
