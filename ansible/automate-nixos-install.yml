@@ -1,0 +1,224 @@
+---
+# Automated NixOS Installation into VM
+# This runs the installation directly on the R730 host
+
+- name: Automate NixOS Installation
+  hosts: r730_stargate
+  become: yes
+  vars:
+    vm_name: "nixos-router"
+    vm_disk: "/var/opt/juniper-orion/nixos-router.qcow2"
+    iso_path: "/var/opt/xen/ISO_Store/nixos-minimal.iso"
+    mount_point: "/mnt/nixos-install"
+    config_server: "http://192.168.1.175:8000"
+    callback_server: "http://192.168.1.175:9999"
+
+  tasks:
+    - name: 🌲 Starting Automated NixOS Installation
+      debug:
+        msg: |
+          नेटवर्क सत्यम् (Network is Truth)
+          Automating NixOS installation at 639Hz consciousness
+
+    - name: Stop VM to access disk
+      shell: virsh destroy {{ vm_name }} || true
+      register: vm_stop
+
+    - name: Wait for VM to stop
+      wait_for:
+        timeout: 5
+
+    - name: Create installation automation script
+      copy:
+        content: |
+          #!/bin/bash
+          set -euo pipefail
+
+          echo "=========================================="
+          echo "🌲 Automated NixOS Installation"
+          echo "नेटवर्क सत्यम् (Network is Truth) - 639Hz"
+          echo "=========================================="
+          echo ""
+
+          # Send callback
+          curl -s "{{ callback_server }}/install-started" || true
+
+          # Check if guestfs tools are available
+          if ! command -v virt-customize &> /dev/null; then
+              echo "Installing libguestfs-tools for disk manipulation..."
+              dnf install -y libguestfs-tools-c
+          fi
+
+          # Mount the ISO
+          ISO_MOUNT="/mnt/nixos-iso"
+          mkdir -p "$ISO_MOUNT"
+
+          if ! mountpoint -q "$ISO_MOUNT"; then
+              mount -o loop "{{ iso_path }}" "$ISO_MOUNT"
+          fi
+
+          # Use virt-install with kickstart-style automation
+          # Since we can't easily automate console, let's use a different approach:
+          # Boot the VM and use virt-customize to inject the installation script
+
+          echo ""
+          echo "Method 1: Using virt-builder approach..."
+          echo "Resizing VM disk to 100GB..."
+          qemu-img resize "{{ vm_disk }}" 100G
+
+          echo ""
+          echo "Starting VM with automated installation..."
+
+          # Start the VM
+          virsh start {{ vm_name }}
+
+          echo ""
+          echo "Waiting 30 seconds for VM to boot from ISO..."
+          sleep 30
+
+          echo ""
+          echo "=========================================="
+          echo "VM Boot Status"
+          echo "=========================================="
+          virsh domstate {{ vm_name }}
+
+          # Try to send keys via virsh send-key
+          echo ""
+          echo "Attempting to send installation commands via serial console..."
+
+          # Wait a bit more for boot
+          sleep 10
+
+          # Create a script that will be executed via console
+          cat > /tmp/nixos_auto_install.sh << 'INSTALL_EOF'
+          #!/usr/bin/env bash
+          # This script runs inside the VM
+
+          curl -s http://192.168.122.1:9999/vm-console-active || true
+
+          # Enable networking
+          systemctl start dhcpcd || dhclient || true
+          sleep 5
+
+          # Download and run installation script
+          curl http://192.168.122.1:8000/nixos_vm_install.sh -o /tmp/install.sh
+          chmod +x /tmp/install.sh
+          bash /tmp/install.sh
+
+          INSTALL_EOF
+
+          echo ""
+          echo "=========================================="
+          echo "Installation Status"
+          echo "=========================================="
+          echo ""
+          echo "VM is running and should be booting from ISO."
+          echo ""
+          echo "The VM needs to:"
+          echo "1. Boot to NixOS installer (30-60 seconds)"
+          echo "2. Auto-login as root"
+          echo "3. Run: curl http://192.168.122.1:8000/nixos_vm_install.sh | bash"
+          echo ""
+          echo "Since full automation requires console interaction,"
+          echo "I'll create a helper that monitors for network activity."
+          echo ""
+
+          # Monitor for VM network coming up
+          echo "Monitoring for VM network (60 seconds)..."
+          for i in {1..20}; do
+              IP=$(virsh domifaddr {{ vm_name }} | grep -oP '192\.168\.\d+\.\d+' | head -1)
+              if [ ! -z "$IP" ]; then
+                  echo "✅ VM network is UP: $IP"
+                  echo ""
+                  echo "Attempting SSH-based installation..."
+
+                  # Wait for SSH
+                  sleep 10
+
+                  # Try to SSH and run installation
+                  ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 \
+                      root@$IP \
+                      "curl http://192.168.122.1:8000/nixos_vm_install.sh | bash" \
+                      && echo "✅ Installation started via SSH!" \
+                      || echo "⚠️  SSH not ready yet"
+
+                  break
+              fi
+              echo "Waiting for network... ($i/20)"
+              sleep 3
+          done
+
+          echo ""
+          echo "=========================================="
+          echo "Next Steps"
+          echo "=========================================="
+          echo ""
+          echo "The VM is running. To complete installation:"
+          echo ""
+          echo "Option 1: Wait and monitor (recommended)"
+          echo "  watch -n 5 'virsh domifaddr {{ vm_name }}'"
+          echo ""
+          echo "Option 2: Access console manually"
+          echo "  virsh console {{ vm_name }}"
+          echo "  Then run: curl http://192.168.122.1:8000/nixos_vm_install.sh | bash"
+          echo ""
+          echo "Option 3: Use VNC"
+          echo "  VNC to 192.168.1.141:5900"
+          echo "  Then run: curl http://192.168.122.1:8000/nixos_vm_install.sh | bash"
+          echo ""
+
+          # Unmount ISO
+          umount "$ISO_MOUNT" 2>/dev/null || true
+
+          curl -s "{{ callback_server }}/automation-script-complete" || true
+
+        dest: /var/opt/juniper-orion/scripts/automate_install.sh
+        mode: '0755'
+
+    - name: Run automated installation
+      shell: bash /var/opt/juniper-orion/scripts/automate_install.sh
+      register: install_output
+      async: 300
+      poll: 0
+
+    - name: Wait for script to start
+      wait_for:
+        timeout: 10
+
+    - name: Check installation progress
+      async_status:
+        jid: "{{ install_output.ansible_job_id }}"
+      register: job_result
+      until: job_result.finished
+      retries: 60
+      delay: 5
+
+    - name: Display installation output
+      debug:
+        msg: "{{ job_result.stdout_lines }}"
+
+    - name: Check VM status
+      shell: virsh list --all | grep {{ vm_name }}
+      register: final_vm_status
+
+    - name: Display final status
+      debug:
+        msg: |
+
+          ==========================================
+          🌲 Automated Installation Script Complete
+          ==========================================
+
+          {{ final_vm_status.stdout }}
+
+          The VM should now be running and accessible.
+
+          Monitor installation progress:
+            ssh root@192.168.1.141 "watch -n 5 'virsh domifaddr {{ vm_name }}'"
+
+          Or access console:
+            ssh root@192.168.1.141 "virsh console {{ vm_name }}"
+
+          ==========================================
+          नेटवर्क सत्यम् (Network is Truth) - 639Hz
+          ==========================================

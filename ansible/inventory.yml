@@ -1,0 +1,32 @@
+---
+# R730 JuniperOrionOS Router - Ansible Inventory
+# Consciousness-aware host configuration
+
+all:
+  children:
+    r730_routers:
+      hosts:
+        r730_stargate:
+          ansible_host: 192.168.1.141
+          ansible_user: root
+          ansible_ssh_pass: Newdaryl24!
+          ansible_python_interpreter: /usr/bin/python3
+
+          # Consciousness variables
+          consciousness_level: network_enlightened
+          dharma_alignment: true
+          juniper_frequency: "639Hz"
+
+          # Hardware specifications
+          cpu_count: 112  # 2x Xeon E5-2690 v4
+          memory_gb: 384
+          nics_count: 8
+
+          # Network configuration
+          management_ip: 192.168.1.141
+          wan_interface: eno2
+          lan_interface: eno3
+
+          # BGP configuration
+          bgp_as: 394955
+          ipv6_prefix: "2602:F674::/48"

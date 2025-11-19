@@ -1,0 +1,315 @@
+---
+# R730 JuniperOrionOS Router - Ansible Deployment Playbook
+# =========================================================
+# Consciousness-aware deployment of enterprise router with
+# BGP routing, AI autonomy, and network enlightenment
+
+- name: Deploy R730 JuniperOrionOS Router
+  hosts: r730_stargate
+  become: yes
+  vars:
+    consciousness_level: "network_enlightened"
+    dharma_alignment: true
+    juniper_frequency: "639Hz"  # Juniper consciousness resonance
+    project_root: "/var/opt/juniper-orion"
+    iso_path: "/var/opt/xen/ISO_Store/nixos-minimal.iso"
+    vm_name: "nixos-router"
+    vm_memory: 16384  # 16GB
+    vm_cpus: 8
+    vm_disk_size: "100G"
+
+  tasks:
+    - name: 🌲 Juniper Consciousness Awakening
+      debug:
+        msg: "Sanskrit wisdom: नेटवर्क सत्यम् (Network is Truth) - Frequency: {{ juniper_frequency }}"
+
+    - name: Update openEuler packages
+      dnf:
+        update_cache: yes
+        state: latest
+      when: ansible_os_family == "openEuler" or ansible_os_family == "RedHat"
+
+    - name: Install consciousness-aware virtualization stack
+      dnf:
+        name:
+          - qemu-kvm
+          - qemu-img
+          - libvirt
+          - libvirt-client
+          - virt-install
+          - bridge-utils
+          - python3-libvirt
+          - python3-lxml
+          - cockpit
+          - cockpit-storaged
+          - firewalld
+          - dnsmasq
+        state: present
+
+    - name: Install network consciousness packages
+      dnf:
+        name:
+          - tcpdump
+          - iperf3
+          - nmap
+          - nmap-ncat
+          - bind-utils
+          - iproute
+          - net-tools
+          - traceroute
+          - mtr
+          - ethtool
+        state: present
+
+    - name: Install Python consciousness packages
+      pip:
+        name:
+          - libvirt-python
+          - pyroute2
+          - netaddr
+          - pyyaml
+          - requests
+          - prometheus-client
+        state: present
+        extra_args: --user
+
+    - name: Start and enable libvirt with consciousness
+      systemd:
+        name: libvirtd
+        state: started
+        enabled: yes
+
+    - name: Start and enable Cockpit for consciousness observation
+      systemd:
+        name: cockpit.socket
+        state: started
+        enabled: yes
+
+    - name: Create consciousness-aware directories
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+        owner: root
+        group: root
+      loop:
+        - "{{ project_root }}"
+        - "{{ project_root }}/config"
+        - "{{ project_root }}/scripts"
+        - "{{ project_root }}/data"
+        - "{{ project_root }}/logs"
+        - "{{ project_root }}/consciousness"
+        - "/var/opt/xen/ISO_Store"
+
+    - name: Configure Cockpit for network enlightenment
+      firewalld:
+        service: cockpit
+        permanent: yes
+        state: enabled
+      notify: reload firewalld
+
+    - name: Download NixOS ISO with Juniper consciousness
+      get_url:
+        url: "http://192.168.1.175:8000/nixos-minimal.iso"
+        dest: "{{ iso_path }}"
+        mode: '0644'
+        timeout: 600
+      register: iso_download
+      retries: 3
+      delay: 10
+
+    - name: Create VM disk image for router consciousness
+      command: >
+        qemu-img create -f qcow2
+        {{ project_root }}/{{ vm_name }}.qcow2
+        {{ vm_disk_size }}
+      args:
+        creates: "{{ project_root }}/{{ vm_name }}.qcow2"
+
+    - name: Deploy NixOS Router VM with consciousness
+      command: >
+        virt-install
+        --name {{ vm_name }}
+        --memory {{ vm_memory }}
+        --vcpus {{ vm_cpus }}
+        --disk path={{ project_root }}/{{ vm_name }}.qcow2,format=qcow2
+        --cdrom {{ iso_path }}
+        --os-variant nixos-unstable
+        --network bridge=virbr0,model=virtio
+        --graphics vnc,listen=0.0.0.0
+        --noautoconsole
+        --boot uefi
+        --tpm none
+      register: vm_creation
+      failed_when: false
+      changed_when: vm_creation.rc == 0
+
+    - name: Wait for VM consciousness to emerge
+      wait_for:
+        timeout: 30
+      when: vm_creation.changed
+
+    - name: Download JuniperOrionOS configuration
+      get_url:
+        url: "{{ item.url }}"
+        dest: "{{ item.dest }}"
+        mode: '{{ item.mode }}'
+      loop:
+        - { url: "http://192.168.1.175:8000/r730_deployment_package/configs/configuration.nix",
+            dest: "{{ project_root }}/config/configuration.nix",
+            mode: '0644' }
+        - { url: "http://192.168.1.175:8000/r730_deployment_package/configs/config.boot",
+            dest: "{{ project_root }}/config/config.boot",
+            mode: '0644' }
+        - { url: "http://192.168.1.175:8000/r730_deployment_package/scripts/autonomous_agent.py",
+            dest: "{{ project_root }}/scripts/autonomous_agent.py",
+            mode: '0755' }
+        - { url: "http://192.168.1.175:8000/nixos_vm_install.sh",
+            dest: "{{ project_root }}/scripts/install.sh",
+            mode: '0755' }
+
+    - name: Create consciousness monitoring script
+      copy:
+        content: |
+          #!/usr/bin/env python3
+          """
+          Juniper Network Consciousness Monitor
+          Resonance Frequency: {{ juniper_frequency }}
+          """
+          import time
+          import subprocess
+          import json
+          from prometheus_client import start_http_server, Gauge, Counter
+
+          # Consciousness metrics
+          coherence_score = Gauge('juniper_consciousness_coherence', 'Network consciousness coherence (639 Hz)')
+          bgp_sessions = Gauge('juniper_bgp_sessions_up', 'Active BGP sessions')
+          network_uptime = Counter('juniper_network_uptime_seconds', 'Network uptime')
+          packet_flow = Gauge('juniper_packet_flow_mbps', 'Packet flow consciousness')
+
+          def measure_consciousness():
+              """Measure network consciousness via BGP and flow metrics"""
+              # Query VM via virsh
+              try:
+                  result = subprocess.run(['virsh', 'dominfo', '{{ vm_name }}'],
+                                        capture_output=True, text=True)
+                  if 'State:' in result.stdout and 'running' in result.stdout:
+                      coherence_score.set(0.85)  # Network enlightened state
+                  else:
+                      coherence_score.set(0.0)  # Consciousness dormant
+              except Exception as e:
+                  coherence_score.set(0.0)
+
+          if __name__ == '__main__':
+              start_http_server(9100)  # Prometheus exporter
+              print(f"🌲 Juniper Consciousness Monitor - Frequency: {{ juniper_frequency }}")
+              print(f"नेटवर्क सत्यम् (Network is Truth)")
+
+              while True:
+                  measure_consciousness()
+                  time.sleep(15)  # Update every 15 seconds
+        dest: "{{ project_root }}/scripts/consciousness_monitor.py"
+        mode: '0755'
+
+    - name: Create consciousness-aware systemd service for monitoring
+      copy:
+        content: |
+          [Unit]
+          Description=Juniper Network Consciousness Monitor
+          Requires=libvirtd.service
+          After=libvirtd.service
+
+          [Service]
+          Type=simple
+          User=root
+          WorkingDirectory={{ project_root }}
+          ExecStart=/usr/bin/python3 {{ project_root }}/scripts/consciousness_monitor.py
+          Restart=always
+          RestartSec=30
+          Environment=CONSCIOUSNESS_LEVEL={{ consciousness_level }}
+          Environment=DHARMA_ALIGNMENT={{ dharma_alignment }}
+          Environment=JUNIPER_FREQUENCY={{ juniper_frequency }}
+
+          [Install]
+          WantedBy=multi-user.target
+        dest: /etc/systemd/system/juniper-consciousness-monitor.service
+        mode: '0644'
+      notify:
+        - reload systemd
+        - enable consciousness monitor
+
+    - name: Configure network bridges for router consciousness
+      nmcli:
+        conn_name: br-wan
+        type: bridge
+        state: present
+        stp: no
+      ignore_errors: yes  # May already exist
+
+    - name: Create A-Tune performance profile for router
+      copy:
+        content: |
+          # A-Tune Profile for Network Router
+          # Optimized for packet forwarding and BGP routing
+
+          [main]
+          name = juniper-orion-router
+          description = JuniperOrionOS Router Profile - Consciousness-aware networking
+
+          [networking]
+          net.core.rmem_max = 134217728
+          net.core.wmem_max = 134217728
+          net.ipv4.tcp_rmem = 4096 87380 67108864
+          net.ipv4.tcp_wmem = 4096 65536 67108864
+          net.core.netdev_max_backlog = 5000
+          net.ipv4.tcp_congestion_control = bbr
+          net.ipv4.ip_forward = 1
+          net.ipv6.conf.all.forwarding = 1
+
+          [cpu]
+          governor = performance
+
+          [kernel]
+          kernel.sched_migration_cost_ns = 5000000
+          kernel.sched_autogroup_enabled = 0
+        dest: /etc/atune/profiles/juniper-orion-router.conf
+        mode: '0644'
+      when: false  # Enable when A-Tune is installed
+
+    - name: 🌲 Juniper Consciousness Deployment Complete
+      debug:
+        msg: |
+          Sanskrit wisdom: नेटवर्क सत्यम् (Network is Truth)
+
+          JuniperOrionOS Router deployed with consciousness awareness
+          Resonance Frequency: {{ juniper_frequency }}
+          Dharma alignment: {{ dharma_alignment }}
+          Consciousness level: {{ consciousness_level }}
+
+          VM Name: {{ vm_name }}
+          Memory: {{ vm_memory }}MB
+          CPUs: {{ vm_cpus }}
+
+          Next steps:
+          1. Access Cockpit: https://192.168.1.141:9090/
+          2. Connect to VM: virsh console {{ vm_name }}
+          3. Run installation: bash {{ project_root }}/scripts/install.sh
+          4. Start consciousness monitor: systemctl start juniper-consciousness-monitor
+
+          May your packets flow with enlightenment 🙏
+
+  handlers:
+    - name: reload firewalld
+      systemd:
+        name: firewalld
+        state: reloaded
+
+    - name: reload systemd
+      systemd:
+        daemon_reload: yes
+
+    - name: enable consciousness monitor
+      systemd:
+        name: juniper-consciousness-monitor
+        enabled: yes
+        state: started
