@@ -1,0 +1,24 @@
+[Unit]
+Description=SCION Control Service - LuciVerse
+Documentation=https://docs.scion.org
+After=network-online.target scion-dispatcher.service
+Wants=scion-dispatcher.service
+StartLimitBurst=3
+StartLimitInterval=60s
+
+[Service]
+Type=simple
+User=scion
+Group=scion
+ExecStart=/usr/bin/scion-control --config /etc/scion/cs.toml
+Restart=on-failure
+RestartSec=10
+
+# Security hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/scion /var/log/scion
+
+[Install]
+WantedBy=multi-user.target

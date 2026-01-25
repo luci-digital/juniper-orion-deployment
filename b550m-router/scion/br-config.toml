@@ -29,16 +29,16 @@ interface_id = 1
 bind = "192.168.1.179:30041"
 public = "192.168.1.179:30041"
 # IPv6 internal binding
-bind_v6 = "[2602:F674:0001:SCION::179]:30041"
-public_v6 = "[2602:F674:0001:SCION::179]:30041"
+bind_v6 = "[2602:F674:0001:0000::179]:30041"
+public_v6 = "[2602:F674:0001:0000::179]:30041"
 
 # Peering with COMN tier
 [border_router.interfaces.core_to_comn]
 interface_id = 11
 link_type = "child"
 remote_isd_as = "2-ff00:0:528"
-local_addr = "2602:F674:0001:SCION::1:501"
-remote_addr = "2602:F674:0100:SCION::1:501"
+local_addr = "2602:F674:0001:0000::1:501"
+remote_addr = "2602:F674:0100:0000::1:501"
 mtu = 1472
 bfd = { enabled = true, interval = "200ms" }
 
@@ -56,7 +56,7 @@ bind = "0.0.0.0:30042"
 public = "192.168.1.179:30042"
 # IPv6 WAN binding (ARIN allocation)
 bind_v6 = "[::]:30042"
-public_v6 = "[2602:F674:0100:SCION::1]:30042"
+public_v6 = "[2602:F674:0100:0000::1]:30042"
 
 # Internal interface - connects to Zbook SIG
 [border_router.interfaces.internal]
@@ -68,8 +68,8 @@ public = "192.168.1.179:30142"
 interface_id = 21
 link_type = "parent"
 remote_isd_as = "1-ff00:0:432"
-local_addr = "2602:F674:0100:SCION::1:501"
-remote_addr = "2602:F674:0001:SCION::1:501"
+local_addr = "2602:F674:0100:0000::1:501"
+remote_addr = "2602:F674:0001:0000::1:501"
 mtu = 1472
 bfd = { enabled = true, interval = "200ms" }
 
@@ -78,8 +78,8 @@ bfd = { enabled = true, interval = "200ms" }
 interface_id = 22
 link_type = "child"
 remote_isd_as = "3-ff00:0:741"
-local_addr = "2602:F674:0100:SCION::1:502"
-remote_addr = "2602:F674:0200:SCION::1:502"
+local_addr = "2602:F674:0100:0000::1:502"
+remote_addr = "2602:F674:0200:0000::1:502"
 mtu = 1472
 bfd = { enabled = true, interval = "200ms" }
 
@@ -95,16 +95,16 @@ interface_id = 3
 [border_router.interfaces.internal]
 bind = "192.168.1.179:30043"
 public = "192.168.1.179:30043"
-bind_v6 = "[2602:F674:0200:SCION::179]:30043"
-public_v6 = "[2602:F674:0200:SCION::179]:30043"
+bind_v6 = "[2602:F674:0200:0000::179]:30043"
+public_v6 = "[2602:F674:0200:0000::179]:30043"
 
 # Peering with COMN tier (parent) - mandatory waypoint
 [border_router.interfaces.pac_to_comn]
 interface_id = 31
 link_type = "parent"
 remote_isd_as = "2-ff00:0:528"
-local_addr = "2602:F674:0200:SCION::1:502"
-remote_addr = "2602:F674:0100:SCION::1:502"
+local_addr = "2602:F674:0200:0000::1:502"
+remote_addr = "2602:F674:0100:0000::1:502"
 mtu = 1472
 bfd = { enabled = true, interval = "200ms" }
 

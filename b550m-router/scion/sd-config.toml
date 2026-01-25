@@ -22,7 +22,7 @@ file.path = "/var/log/scion/sd.log"
 address = "/run/scion/scion-daemon.sock"
 # TCP for remote access (Zbook L7 gateway)
 tcp_address = "192.168.1.179:30255"
-tcp_address_v6 = "[2602:F674:0001:SCION::179]:30255"
+tcp_address_v6 = "[2602:F674:0001:0000::179]:30255"
 
 # =============================================================================
 # Local AS Configuration

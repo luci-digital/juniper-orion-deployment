@@ -22,17 +22,17 @@ file.path = "/var/log/scion/cs.log"
 [[control_service]]
 isd_as = "1-ff00:0:432"
 address = "192.168.1.179:30001"
-address_v6 = "[2602:F674:0001:SCION::179]:30001"
+address_v6 = "[2602:F674:0001:0000::179]:30001"
 
 [[control_service]]
 isd_as = "2-ff00:0:528"
 address = "192.168.1.179:30002"
-address_v6 = "[2602:F674:0100:SCION::179]:30002"
+address_v6 = "[2602:F674:0100:0000::179]:30002"
 
 [[control_service]]
 isd_as = "3-ff00:0:741"
 address = "192.168.1.179:30003"
-address_v6 = "[2602:F674:0200:SCION::179]:30003"
+address_v6 = "[2602:F674:0200:0000::179]:30003"
 
 # =============================================================================
 # TRC and Certificate Store

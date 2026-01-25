@@ -1,0 +1,28 @@
+[Unit]
+Description=SCION Border Router - LuciVerse WAN
+Documentation=https://docs.scion.org
+After=network-online.target
+Wants=network-online.target
+StartLimitBurst=3
+StartLimitInterval=60s
+
+[Service]
+Type=simple
+User=scion
+Group=scion
+ExecStart=/usr/bin/scion-router --config /etc/scion/br.toml
+Restart=on-failure
+RestartSec=10
+
+# Capabilities for raw sockets
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_RAW CAP_NET_BIND_SERVICE
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_RAW CAP_NET_BIND_SERVICE
+
+# Security hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/scion /var/log/scion /run/scion
+
+[Install]
+WantedBy=multi-user.target

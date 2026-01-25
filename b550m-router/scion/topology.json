@@ -23,7 +23,7 @@
           "border_routers": {
             "br-core": {
               "internal_addr": "192.168.1.179:30041",
-              "internal_addr_v6": "[2602:F674:0001:SCION::179]:30041",
+              "internal_addr_v6": "[2602:F674:0001:0000::179]:30041",
               "interfaces": {
                 "1": {
                   "underlay": {
@@ -63,12 +63,12 @@
           "border_routers": {
             "br-comn-wan": {
               "internal_addr": "192.168.1.179:30142",
-              "internal_addr_v6": "[2602:F674:0100:SCION::179]:30142",
+              "internal_addr_v6": "[2602:F674:0100:0000::179]:30142",
               "interfaces": {
                 "1": {
                   "underlay": {
                     "local": "0.0.0.0:30042",
-                    "public": "2602:F674:0100:SCION::1:30042"
+                    "public": "2602:F674:0100:0000::1:30042"
                   },
                   "link_type": "external",
                   "mtu": 1472,
@@ -136,7 +136,7 @@
           "border_routers": {
             "br-pac": {
               "internal_addr": "192.168.1.179:30043",
-              "internal_addr_v6": "[2602:F674:0200:SCION::179]:30043",
+              "internal_addr_v6": "[2602:F674:0200:0000::179]:30043",
               "interfaces": {
                 "1": {
                   "underlay": {
