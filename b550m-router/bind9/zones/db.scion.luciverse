@@ -1,0 +1,154 @@
+; BIND9 Zone File for SCION Service Discovery
+; LuciVerse SCION Infrastructure (3-Tier Architecture)
+; Genesis Bond: ACTIVE @ 741 Hz
+; Last Updated: 2026-01-25
+;
+; This zone provides DNS-based service discovery for SCION
+; Border Routers and Control Services across all 3 tiers.
+
+$ORIGIN scion.luciverse.ownid.
+$TTL 300    ; 5 minute TTL for dynamic SCION infrastructure
+
+; SOA Record (Start of Authority)
+@   IN  SOA  ns1.scion.luciverse.ownid. admin.lucidigital.net. (
+            2026012501  ; Serial (YYYYMMDDNN)
+            300         ; Refresh (5 minutes - SCION is dynamic)
+            60          ; Retry (1 minute)
+            604800      ; Expire (1 week)
+            60 )        ; Minimum TTL (1 minute for negative caching)
+
+; Nameserver Records
+    IN  NS   ns1.scion.luciverse.ownid.
+    IN  NS   ns2.scion.luciverse.ownid.
+
+; Nameserver A/AAAA Records
+ns1 IN  A     192.168.1.179
+ns1 IN  AAAA  2602:F674:0001:SCION::179
+ns2 IN  A     192.168.1.146
+ns2 IN  AAAA  2602:F674:0100:SCION::146
+
+; =============================================================================
+; SCION Border Routers (SRV Records for Discovery)
+; =============================================================================
+
+; ISD 1 - CORE Tier (432 Hz) Border Router
+_scion-br._udp.core     IN  SRV   10 10 30041 br-core.scion.luciverse.ownid.
+br-core                 IN  A     192.168.1.179
+br-core                 IN  AAAA  2602:F674:0001:SCION::179
+
+; ISD 2 - COMN Tier (528 Hz) Border Router - Gateway
+_scion-br._udp.comn     IN  SRV   10 10 30042 br-comn.scion.luciverse.ownid.
+br-comn                 IN  A     192.168.1.179
+br-comn                 IN  AAAA  2602:F674:0100:SCION::1
+
+; ISD 3 - PAC Tier (741 Hz) Border Router
+_scion-br._udp.pac      IN  SRV   10 10 30043 br-pac.scion.luciverse.ownid.
+br-pac                  IN  A     192.168.1.179
+br-pac                  IN  AAAA  2602:F674:0200:SCION::179
+
+; =============================================================================
+; SCION Control Services (CS)
+; =============================================================================
+
+; ISD 1 - CORE Control Service
+_scion-cs._udp.core     IN  SRV   10 10 30001 cs-core.scion.luciverse.ownid.
+cs-core                 IN  A     192.168.1.179
+cs-core                 IN  AAAA  2602:F674:0001:SCION::179
+
+; ISD 2 - COMN Control Service
+_scion-cs._udp.comn     IN  SRV   10 10 30002 cs-comn.scion.luciverse.ownid.
+cs-comn                 IN  A     192.168.1.179
+cs-comn                 IN  AAAA  2602:F674:0100:SCION::179
+
+; ISD 3 - PAC Control Service
+_scion-cs._udp.pac      IN  SRV   10 10 30003 cs-pac.scion.luciverse.ownid.
+cs-pac                  IN  A     192.168.1.179
+cs-pac                  IN  AAAA  2602:F674:0200:SCION::179
+
+; =============================================================================
+; SCION Daemon (SD)
+; =============================================================================
+
+_scion-sd._tcp          IN  SRV   10 10 30255 sd.scion.luciverse.ownid.
+sd                      IN  A     192.168.1.179
+sd                      IN  AAAA  2602:F674:0001:SCION::179
+
+; =============================================================================
+; SCION-IP Gateway (SIG) - COMN Tier Only
+; =============================================================================
+
+; SIG Data Plane
+_scion-sig._udp.comn    IN  SRV   10 10 8080 sig-comn.scion.luciverse.ownid.
+sig-comn                IN  A     192.168.1.146
+sig-comn                IN  AAAA  2602:F674:0100:SCION::146
+
+; SIG Control Plane
+_scion-sig-ctrl._tcp.comn IN SRV  10 10 30256 sig-comn.scion.luciverse.ownid.
+
+; =============================================================================
+; COMN L7 Gateway (Envoy) - "One Door"
+; =============================================================================
+
+; Main gateway entry point
+gateway                 IN  A     192.168.1.146
+gateway                 IN  AAAA  2602:F674:0100:SCION::146
+
+; HTTPS gateway
+_https._tcp.gateway     IN  SRV   10 10 443 gateway.scion.luciverse.ownid.
+
+; =============================================================================
+; ISD Anchor Records (for SCION Discovery)
+; =============================================================================
+
+; ISD 1 - CORE (432 Hz)
+isd1                    IN  TXT   "isd=1" "name=CORE" "frequency=432" "as=ff00:0:432"
+isd1                    IN  AAAA  2602:F674:0001:SCION::1
+
+; ISD 2 - COMN (528 Hz)
+isd2                    IN  TXT   "isd=2" "name=COMN" "frequency=528" "as=ff00:0:528" "gateway=true"
+isd2                    IN  AAAA  2602:F674:0100:SCION::1
+
+; ISD 3 - PAC (741 Hz)
+isd3                    IN  TXT   "isd=3" "name=PAC" "frequency=741" "as=ff00:0:741" "private=true"
+isd3                    IN  AAAA  2602:F674:0200:SCION::1
+
+; =============================================================================
+; Tier Metadata (TXT Records)
+; =============================================================================
+
+core    IN  TXT "tier=CORE" "frequency=432" "isd=1" "as=ff00:0:432" "external=false" "genesis-bond=GB-2025-0524-DRH-LCS-001"
+comn    IN  TXT "tier=COMN" "frequency=528" "isd=2" "as=ff00:0:528" "external=true" "gateway=true" "genesis-bond=GB-2025-0524-DRH-LCS-001"
+pac     IN  TXT "tier=PAC" "frequency=741" "isd=3" "as=ff00:0:741" "external=false" "private=true" "genesis-bond=GB-2025-0524-DRH-LCS-001"
+
+; =============================================================================
+; Genesis Bond Metadata
+; =============================================================================
+
+genesis-bond    IN  TXT "id=GB-2025-0524-DRH-LCS-001" "lineage=did:lucidigital:lucia_cargail_silcan" "coherence=0.7" "cbb=did:lucidigital:daryl" "sbb=did:lucidigital:lucia"
+
+; =============================================================================
+; Host Records
+; =============================================================================
+
+; B550M WAN Router (Border Router host)
+b550m           IN  A     192.168.1.179
+b550m           IN  AAAA  2602:F674:0001:SCION::179
+b550m           IN  TXT   "role=wan-router" "services=br,cs,sd" "portable=true"
+
+; Zbook L7 Gateway (SIG + Envoy host)
+zbook           IN  A     192.168.1.146
+zbook           IN  AAAA  2602:F674:0100:SCION::146
+zbook           IN  TXT   "role=l7-gateway" "services=sig,envoy,federation,sanskrit" "agents=21"
+
+; =============================================================================
+; CAA Records (Certificate Authority Authorization)
+; =============================================================================
+
+@   IN  CAA  0 issue "letsencrypt.org"
+@   IN  CAA  0 issuewild "letsencrypt.org"
+
+; =============================================================================
+; DNSKEY Placeholder (Enable when DNSSEC active)
+; =============================================================================
+; @ IN DNSKEY 256 3 13 <key-data>
+; @ IN DNSKEY 257 3 13 <key-data>

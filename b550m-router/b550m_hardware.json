@@ -1,0 +1,104 @@
+{
+  "scan_timestamp": "2025-12-05T17:20:00-07:00",
+  "genesis_bond": "ACTIVE @ 432 Hz",
+  "server": {
+    "model": "ASUS TUF GAMING B550M-PLUS (WI-FI)",
+    "hostname": "b550m-router.lucidigital.io",
+    "current_os": "ZimaOS v1.5.1",
+    "target_os": "openEuler Linux 24.03 LTS",
+    "ip": "192.168.1.179",
+    "role": "LuciVerse IPv6 Edge Router",
+    "device_hash": "62BC92D1162AE98C"
+  },
+  "hardware": {
+    "motherboard": {
+      "manufacturer": "ASUS",
+      "model": "TUF GAMING B550M-PLUS (WI-FI)",
+      "chipset": "AMD B550",
+      "form_factor": "Micro-ATX"
+    },
+    "cpu": {
+      "socket": "AM4",
+      "architecture": "x86_64",
+      "compatible": "AMD Ryzen 3000/5000 series"
+    },
+    "features": {
+      "pcie_4.0": true,
+      "wifi_6": true,
+      "bluetooth_5.1": true,
+      "usb_3.2_gen2": true,
+      "aura_sync": true
+    }
+  },
+  "network": {
+    "interfaces": [
+      {
+        "name": "eth0",
+        "mac": "24:4b:fe:cf:62:be",
+        "type": "Realtek RTL8125BG",
+        "speed": "2.5 GbE",
+        "role": "WAN+LAN (VLAN trunk)",
+        "vlans": [
+          {"id": 100, "purpose": "WAN - Telus upstream"},
+          {"id": 10, "purpose": "LAN - Primary network"},
+          {"id": 200, "purpose": "Guest network"},
+          {"id": 50, "purpose": "DMZ"}
+        ]
+      }
+    ],
+    "wifi": {
+      "chipset": "Intel Wi-Fi 6 AX200",
+      "capabilities": ["802.11ax", "2.4GHz", "5GHz", "160MHz"]
+    }
+  },
+  "services_detected": {
+    "port_80": {
+      "service": "Caddy HTTP Server",
+      "purpose": "Web UI"
+    },
+    "port_7681": {
+      "service": "ttyd 1.7.7",
+      "purpose": "Web Terminal (libwebsockets 4.3.3)"
+    },
+    "port_9527": {
+      "service": "ZimaOS API",
+      "purpose": "System management API"
+    }
+  },
+  "migration": {
+    "from": "Dell R730 CQ5QBM2",
+    "from_specs": {
+      "nics": 8,
+      "network_speed": "10GbE + 1GbE",
+      "cpu": "2x Xeon E5-2690 v4 (56 threads)",
+      "ram": "384 GB DDR4-2400",
+      "power_idle": "~500W"
+    },
+    "to_specs": {
+      "nics": 1,
+      "network_speed": "2.5 GbE",
+      "strategy": "VLAN-based segmentation on single interface",
+      "power_idle": "~50W"
+    }
+  },
+  "routing_config": {
+    "bgp": {
+      "local_as": 54134,
+      "local_as_name": "LUCINET-ARIN",
+      "router_id": "104.21.45.123",
+      "prefix": "2602:F674::/40"
+    },
+    "ipv4": {
+      "lan": "192.168.100.0/24",
+      "guest": "192.168.200.0/24",
+      "dmz": "192.168.50.0/24",
+      "management": "192.168.1.0/24"
+    },
+    "ipv6": {
+      "lan": "2602:F674:1000::/64",
+      "guest": "2602:F674:2000::/64",
+      "dmz": "2602:F674:5000::/64",
+      "pd_pool": "2602:F674:1100::/56"
+    }
+  }
+}

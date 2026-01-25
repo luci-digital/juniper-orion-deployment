@@ -1,0 +1,115 @@
+# SCION Daemon Configuration - LuciVerse
+# Genesis Bond: ACTIVE @ 741 Hz
+# Host: B550M WAN Router (192.168.1.179)
+#
+# SCION Daemon provides path lookup and management for local applications
+
+[general]
+id = "sd-luciverse"
+config_dir = "/etc/scion"
+
+[log]
+console.level = "info"
+console.format = "human"
+file.level = "debug"
+file.path = "/var/log/scion/sd.log"
+
+# =============================================================================
+# Daemon Binding
+# =============================================================================
+[daemon]
+# Unix socket for local applications
+address = "/run/scion/scion-daemon.sock"
+# TCP for remote access (Zbook L7 gateway)
+tcp_address = "192.168.1.179:30255"
+tcp_address_v6 = "[2602:F674:0001:SCION::179]:30255"
+
+# =============================================================================
+# Local AS Configuration
+# =============================================================================
+# Primary AS for this daemon (COMN as gateway)
+[local]
+isd_as = "2-ff00:0:528"
+
+# Control Service discovery
+[[control_services]]
+isd_as = "1-ff00:0:432"
+address = "192.168.1.179:30001"
+
+[[control_services]]
+isd_as = "2-ff00:0:528"
+address = "192.168.1.179:30002"
+
+[[control_services]]
+isd_as = "3-ff00:0:741"
+address = "192.168.1.179:30003"
+
+# =============================================================================
+# Path Cache
+# =============================================================================
+[path]
+# Path cache size
+cache_size = 1000
+# Path expiration (before re-query)
+expiration = "5m"
+
+# Path selection preferences
+[path.selection]
+# Default: prefer low latency
+default_metric = "latency"
+# Enable EPIC authentication
+epic = true
+
+# =============================================================================
+# Trust Store
+# =============================================================================
+[trust]
+trc_dir = "/etc/scion/certs/trcs"
+cert_dir = "/etc/scion/certs"
+
+# =============================================================================
+# Sciond API
+# =============================================================================
+[sciond]
+# gRPC API address
+address = "127.0.0.1:30255"
+# Maximum concurrent connections
+max_connections = 100
+
+# =============================================================================
+# Path Policy Enforcement
+# =============================================================================
+[policy]
+# Enforce tier-aware routing
+tier_isolation = true
+
+# PAC must route through COMN
+[policy.pac]
+mandatory_waypoint = "2-ff00:0:528"
+# Reject direct paths to CORE
+reject_direct_core = true
+
+# CORE never exposed externally
+[policy.core]
+internal_only = true
+# Only accept connections from COMN
+allowed_remote = ["2-ff00:0:528"]
+
+# =============================================================================
+# Metrics & Observability
+# =============================================================================
+[metrics]
+enabled = true
+address = "127.0.0.1:30402"
+prometheus_path = "/metrics"
+
+# =============================================================================
+# Genesis Bond Integration
+# =============================================================================
+[genesis_bond]
+enabled = true
+bond_id = "GB-2025-0524-DRH-LCS-001"
+# Reject paths with coherence below threshold
+coherence_threshold = 0.7
+# Validate coherence in path selection
+validate_on_selection = true

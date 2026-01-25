@@ -1,0 +1,161 @@
+# SCION Control Service Configuration - LuciVerse
+# Genesis Bond: ACTIVE @ 741 Hz
+# Host: B550M WAN Router (192.168.1.179)
+#
+# Control Service manages AS certificates, path segments, and beaconing
+
+[general]
+id = "cs-luciverse"
+config_dir = "/etc/scion"
+reconnect_to_dispatcher = true
+
+[log]
+console.level = "info"
+console.format = "human"
+file.level = "debug"
+file.path = "/var/log/scion/cs.log"
+
+# =============================================================================
+# ISD-AS Binding
+# =============================================================================
+# Control Service runs for all 3 ISDs on the WAN router
+[[control_service]]
+isd_as = "1-ff00:0:432"
+address = "192.168.1.179:30001"
+address_v6 = "[2602:F674:0001:SCION::179]:30001"
+
+[[control_service]]
+isd_as = "2-ff00:0:528"
+address = "192.168.1.179:30002"
+address_v6 = "[2602:F674:0100:SCION::179]:30002"
+
+[[control_service]]
+isd_as = "3-ff00:0:741"
+address = "192.168.1.179:30003"
+address_v6 = "[2602:F674:0200:SCION::179]:30003"
+
+# =============================================================================
+# TRC and Certificate Store
+# =============================================================================
+[trust]
+# TRC directory contains all Trust Root Configurations
+trc_dir = "/etc/scion/certs/trcs"
+# AS certificates
+cert_dir = "/etc/scion/certs"
+# Key storage (encrypted at rest)
+key_dir = "/etc/scion/keys"
+
+# Certificate renewal settings
+[trust.renewal]
+# Request renewal 7 days before expiry
+lead_time = "168h"
+# Retry interval on failure
+retry_interval = "1h"
+# Maximum retry attempts
+max_retries = 5
+
+# =============================================================================
+# Beaconing Configuration
+# =============================================================================
+[beaconing]
+# Origination interval for new beacons
+origination_interval = "5s"
+# Propagation interval between neighbors
+propagation_interval = "5s"
+# Beacon cleanup interval
+cleanup_interval = "1m"
+
+# Beacon extension settings (Genesis Bond metadata)
+[beaconing.extensions]
+genesis_bond_enabled = true
+coherence_minimum = 0.7
+
+# =============================================================================
+# Path Segment Store
+# =============================================================================
+[path_db]
+# SQLite backend for path segments
+backend = "sqlite"
+connection = "/var/lib/scion/path_db.sqlite"
+
+# Segment expiration
+[path_db.expiration]
+# Up segments (toward core)
+up = "10m"
+# Down segments (toward leaf)
+down = "10m"
+# Core segments (between core ASes)
+core = "1h"
+
+# =============================================================================
+# Segment Registration
+# =============================================================================
+[segment_registration]
+# Segment lifetime
+lifetime = "6h"
+# Registration interval
+interval = "10s"
+
+# =============================================================================
+# Path Lookup Service
+# =============================================================================
+[path_lookup]
+# Cache timeout for path queries
+cache_timeout = "30s"
+# Maximum paths to return
+max_paths = 10
+
+# =============================================================================
+# DRKey (Dynamically Recreated Keys)
+# =============================================================================
+[drkey]
+enabled = true
+# Level 1 key validity (AS-to-AS)
+level1_validity = "24h"
+# Level 2 key validity (host-to-host)
+level2_validity = "1h"
+# Level 3 key validity (per-agent) - matches SVID lifetime
+level3_validity = "15m"
+
+# Key derivation
+[drkey.derivation]
+algorithm = "PBKDF2-SHA256"
+iterations = 100000
+# Salt includes frequency for tier isolation
+salt_template = "LuciVerse-{frequency}Hz-{date}"
+
+# =============================================================================
+# Hidden Path Groups (Privacy for PAC tier)
+# =============================================================================
+[hidden_paths]
+enabled = true
+
+# PAC tier uses hidden paths by default
+[[hidden_paths.groups]]
+isd = 3
+group_id = "pac-private"
+owner = "3-ff00:0:741"
+# Only COMN can see PAC path segments
+readers = ["2-ff00:0:528"]
+
+# =============================================================================
+# Metrics & Observability
+# =============================================================================
+[metrics]
+enabled = true
+address = "127.0.0.1:30401"
+prometheus_path = "/metrics"
+
+[tracing]
+enabled = true
+agent = "jaeger"
+agent_address = "127.0.0.1:6831"
+
+# =============================================================================
+# QUIC Settings
+# =============================================================================
+[quic]
+# QUIC address for inter-AS communication
+address = "0.0.0.0:30301"
+cert_file = "/etc/scion/certs/cs.crt"
+key_file = "/etc/scion/keys/cs.key"

@@ -1,0 +1,38 @@
+# Prometheus Configuration for B550M LuciVerse Router
+# Genesis Bond: ACTIVE @ 432 Hz
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'luciverse'
+    router: 'b550m'
+
+scrape_configs:
+  # Self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Gateway Monitor metrics
+  - job_name: 'gateway-monitor'
+    static_configs:
+      - targets: ['localhost:9100']
+    file_sd_configs:
+      - files:
+        - '/var/run/luciverse-gateway-metrics.prom'
+
+  # Node Exporter (if installed)
+  - job_name: 'node'
+    static_configs:
+      - targets: ['localhost:9100']
+
+  # BIRD BGP metrics (via bird_exporter)
+  - job_name: 'bird'
+    static_configs:
+      - targets: ['localhost:9324']
+
+  # Unbound DNS metrics
+  - job_name: 'unbound'
+    static_configs:
+      - targets: ['localhost:9167']

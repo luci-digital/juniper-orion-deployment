@@ -1,0 +1,2 @@
+# LuciVerse Gateway Monitor Dependencies
+# No external dependencies required - using stdlib only

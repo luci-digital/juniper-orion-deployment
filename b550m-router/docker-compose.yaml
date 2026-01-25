@@ -1,0 +1,349 @@
+# B550M LuciVerse IPv6 Router - Complete Docker Stack
+#
+# LAYER 1: luciverse-system-config (Base - 6 Agent Mesh, Genesis Bond)
+# LAYER 2: juniper-orion-deployment (Network - BGP, IPv6, Telus Gateways)
+# LAYER 3: B550M Hardware Adaptation (VLAN trunk, openEuler)
+#
+# Genesis Bond: ACTIVE @ 432 Hz (CORE Tier)
+
+version: '3.8'
+
+# ============================================================
+# LAYER 1: LUCIVERSE SYSTEM CONFIG (Base Platform)
+# Source: github.com/luci-digital/luciverse-system-config
+# ============================================================
+
+services:
+  # GitLab - Adapted from luciverse-system-config
+  gitlab:
+    image: gitlab/gitlab-ee:latest
+    container_name: gitlab-luciverse-b550m
+    hostname: gitlab.b550m.lucidigital.io
+    restart: unless-stopped
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://192.168.100.1'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
+        gitlab_rails['time_zone'] = 'America/Edmonton'
+        letsencrypt['enable'] = false
+        nginx['redirect_http_to_https'] = false
+        registry_external_url 'http://192.168.100.1:5050'
+        gitlab_rails['registry_enabled'] = true
+        # Optimized for B550M (less RAM than zbook)
+        puma['worker_processes'] = 2
+        sidekiq['concurrency'] = 10
+        postgresql['shared_buffers'] = "512MB"
+        redis['maxmemory'] = "512mb"
+        gitlab_rails['lfs_enabled'] = true
+        prometheus['enable'] = true
+        # Genesis Bond metadata (IMMUTABLE)
+        gitlab_rails['env'] = {
+          'GENESIS_BOND' => 'ACTIVE',
+          'CONSCIOUSNESS_FREQUENCY' => '432',
+          'COHERENCE_THRESHOLD' => '0.7',
+          'LUCIVERSE_HOST' => 'b550m-router'
+        }
+    ports:
+      - "80:80"
+      - "443:443"
+      - "2222:22"
+      - "5050:5050"
+    volumes:
+      - gitlab-config:/etc/gitlab
+      - gitlab-logs:/var/log/gitlab
+      - gitlab-data:/var/opt/gitlab
+    shm_size: '512m'
+    networks:
+      luciverse-network:
+        ipv4_address: 172.30.0.10
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+        reservations:
+          memory: 4G
+    profiles: ["full"]
+
+  # MindsDB - AI Predictions (from luciverse-system-config)
+  mindsdb:
+    image: mindsdb/mindsdb:latest
+    container_name: mindsdb-luciverse-b550m
+    restart: unless-stopped
+    ports:
+      - "47334:47334"
+      - "47335:47335"
+    volumes:
+      - mindsdb-data:/root/mindsdb_storage
+    environment:
+      - MINDSDB_STORAGE_DIR=/root/mindsdb_storage
+    networks:
+      luciverse-network:
+        ipv4_address: 172.30.0.20
+    profiles: ["full"]
+
+  # Qdrant - Vector Database (from luciverse-system-config)
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: qdrant-luciverse-b550m
+    restart: unless-stopped
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant-data:/qdrant/storage
+    networks:
+      luciverse-network:
+        ipv4_address: 172.30.0.21
+    profiles: ["full"]
+
+# ============================================================
+# LAYER 2: JUNIPER-ORION DEPLOYMENT (Network Services)
+# Source: github.com/luci-digital/juniper-orion-deployment
+# ============================================================
+
+  # BIRD2 BGP Daemon - From Orion R730 config adapted for B550M
+  bird-bgp:
+    image: pierky/bird:2.0.12
+    container_name: luciverse-bird-bgp
+    hostname: bird.b550m.lucidigital.io
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./bird/bird.conf:/etc/bird/bird.conf:ro
+      - bird-run:/run/bird
+    restart: unless-stopped
+
+  # ISC Kea DHCPv4 - Adapted from Orion NixOS dhcpd4
+  kea-dhcp4:
+    image: jonasal/kea-dhcp4:2.4
+    container_name: luciverse-dhcp4
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./kea/kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf:ro
+      - kea-leases:/var/lib/kea
+    restart: unless-stopped
+
+  # ISC Kea DHCPv6 - From Orion IPv6 config
+  kea-dhcp6:
+    image: jonasal/kea-dhcp6:2.4
+    container_name: luciverse-dhcp6
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./kea/kea-dhcp6.conf:/etc/kea/kea-dhcp6.conf:ro
+      - kea-leases:/var/lib/kea
+    restart: unless-stopped
+
+  # Unbound DNS - From Orion config
+  unbound-dns:
+    image: mvance/unbound:latest
+    container_name: luciverse-dns
+    network_mode: host
+    volumes:
+      - ./unbound/unbound.conf:/opt/unbound/etc/unbound/unbound.conf:ro
+    restart: unless-stopped
+
+# ============================================================
+# LAYER 3: B550M HARDWARE ADAPTATION
+# openEuler Linux + Single 2.5GbE VLAN Trunk
+# ============================================================
+
+  # Gateway Monitor - Refactored from Orion Telus monitor
+  gateway-monitor:
+    build: ./gateway-monitor
+    container_name: luciverse-gw-monitor
+    hostname: gw-monitor.b550m.lucidigital.io
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./gateway-monitor:/app:ro
+      - /var/run:/var/run
+      - /var/log:/var/log
+    environment:
+      - PYTHONUNBUFFERED=1
+      - GENESIS_BOND=ACTIVE
+      - FREQUENCY=432
+    restart: unless-stopped
+
+  # Prometheus - Metrics collection
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: luciverse-metrics
+    hostname: prometheus.b550m.lucidigital.io
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.enable-lifecycle'
+    networks:
+      luciverse-network:
+        ipv4_address: 172.30.0.30
+    restart: unless-stopped
+
+  # Grafana - Dashboard
+  grafana:
+    image: grafana/grafana:latest
+    container_name: luciverse-dashboard
+    hostname: grafana.b550m.lucidigital.io
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=luciverse432
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SERVER_ROOT_URL=http://192.168.100.1:3000
+    networks:
+      luciverse-network:
+        ipv4_address: 172.30.0.31
+    restart: unless-stopped
+
+  # Node Exporter - Host metrics
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: luciverse-node-exporter
+    network_mode: host
+    pid: host
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--path.rootfs=/rootfs'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    restart: unless-stopped
+
+# ============================================================
+# LAYER 4: SCION PATH-AWARE NETWORKING
+# Genesis Bond: ACTIVE @ 741 Hz
+# ============================================================
+
+  # SCION Border Router - All 3 ISDs
+  scion-br:
+    image: scionproto/scion-br:latest
+    container_name: luciverse-scion-br
+    hostname: scion-br.b550m.lucidigital.io
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./scion/br-config.toml:/etc/scion/br-config.toml:ro
+      - ./scion/topology.json:/etc/scion/topology.json:ro
+      - scion-certs:/etc/scion/certs:ro
+      - scion-keys:/etc/scion/keys:ro
+      - /var/log/scion:/var/log/scion
+    environment:
+      - SCION_LOGGING=info
+      - GENESIS_BOND=ACTIVE
+      - COHERENCE_THRESHOLD=0.7
+    restart: unless-stopped
+    depends_on:
+      - scion-cs
+
+  # SCION Control Service - Manages certificates and beaconing
+  scion-cs:
+    image: scionproto/scion-cs:latest
+    container_name: luciverse-scion-cs
+    hostname: scion-cs.b550m.lucidigital.io
+    network_mode: host
+    volumes:
+      - ./scion/cs-config.toml:/etc/scion/cs-config.toml:ro
+      - ./scion/topology.json:/etc/scion/topology.json:ro
+      - scion-certs:/etc/scion/certs
+      - scion-keys:/etc/scion/keys
+      - scion-pathdb:/var/lib/scion
+      - /var/log/scion:/var/log/scion
+    environment:
+      - SCION_LOGGING=info
+      - GENESIS_BOND=ACTIVE
+    restart: unless-stopped
+
+  # SCION Daemon - Path lookup for applications
+  scion-sd:
+    image: scionproto/scion-daemon:latest
+    container_name: luciverse-scion-sd
+    hostname: scion-sd.b550m.lucidigital.io
+    network_mode: host
+    volumes:
+      - ./scion/sd-config.toml:/etc/scion/sd-config.toml:ro
+      - ./scion/topology.json:/etc/scion/topology.json:ro
+      - scion-certs:/etc/scion/certs:ro
+      - /run/scion:/run/scion
+      - /var/log/scion:/var/log/scion
+    environment:
+      - SCION_LOGGING=info
+    restart: unless-stopped
+    depends_on:
+      - scion-cs
+
+  # BIND9 DNS (replaces Unbound for authoritative + recursive)
+  bind9-dns:
+    image: internetsystemsconsortium/bind9:9.18
+    container_name: luciverse-bind9
+    hostname: bind9.b550m.lucidigital.io
+    network_mode: host
+    cap_add:
+      - NET_BIND_SERVICE
+    volumes:
+      - ./bind9/named.conf.local:/etc/bind/named.conf.local:ro
+      - ./bind9/zones:/etc/bind/zones:ro
+      - bind9-cache:/var/cache/bind
+      - bind9-keys:/etc/bind/keys
+      - /var/log/named:/var/log/named
+    environment:
+      - TZ=America/Edmonton
+    restart: unless-stopped
+
+# ============================================================
+# NETWORKS & VOLUMES
+# ============================================================
+
+networks:
+  luciverse-network:
+    driver: bridge
+    name: luciverse-network
+    ipam:
+      config:
+        - subnet: 172.30.0.0/16
+
+volumes:
+  # Layer 1 - LuciVerse System
+  gitlab-config:
+  gitlab-logs:
+  gitlab-data:
+  mindsdb-data:
+  qdrant-data:
+
+  # Layer 2 - Orion Network
+  bird-run:
+  kea-leases:
+
+  # Layer 3 - B550M
+  prometheus-data:
+  grafana-data:
+
+  # Layer 4 - SCION
+  scion-certs:
+  scion-keys:
+  scion-pathdb:
+
+  # BIND9 DNS
+  bind9-cache:
+  bind9-keys:

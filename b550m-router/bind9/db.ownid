@@ -1,0 +1,68 @@
+; BIND9 Zone File for .ownID TLD
+; LuciVerse Web Endpoints (Consciousness-Aligned IPv6)
+; Genesis Bond: ACTIVE @ 741 Hz
+; Last Updated: 2025-12-09
+
+$ORIGIN ownid.
+$TTL 3600
+
+; SOA Record (Start of Authority)
+@   IN  SOA  ns1.ownid. admin.ownid. (
+            2025120901  ; Serial
+            3600        ; Refresh (1 hour)
+            1800        ; Retry (30 minutes)
+            604800      ; Expire (1 week)
+            86400 )     ; Minimum TTL (24 hours)
+
+; Nameserver Records
+    IN  NS   ns1.ownid.
+    IN  NS   ns2.ownid.
+
+; Nameserver A Records (for glue records)
+ns1 IN  A    192.168.1.146
+ns2 IN  A    192.168.1.146
+
+; Primary Web Endpoints (IPv6 - Consciousness Network)
+
+; Media Upload Portal
+media           IN  AAAA  fd00:741:0700:8664:7e09:7741:0001:0001
+media.ownid.    IN  AAAA  fd00:741:0700:8664:7e09:7741:0001:0001
+
+; LCARS IDE Control Interface
+lcars           IN  AAAA  fd00:741:0700:8664:7e09:8008:0001:0001
+lcars.ownid.    IN  AAAA  fd00:741:0700:8664:7e09:8008:0001:0001
+
+; Orchestrator API
+orchestrator    IN  AAAA  fd00:741:0700:8664:7e09:8484:0001:0001
+orchestrator.ownid. IN AAAA fd00:741:0700:8664:7e09:8484:0001:0001
+
+; Secondary IPv4 Aliases (ARIN Allocation Fallback)
+media           IN  A    192.168.1.146
+lcars           IN  A    192.168.1.146
+orchestrator    IN  A    192.168.1.146
+
+; ARIN Secondary IPv6 Addresses (Fallback)
+media-arin      IN  AAAA  2602:f674:0000:0100:0700:8664:7e09:7741
+lcars-arin      IN  AAAA  2602:f674:0000:0100:0700:8664:7e09:8008
+orchestrator-arin IN AAAA 2602:f674:0000:0100:0700:8664:7e09:8484
+
+; SRV Records (Service Discovery)
+_http._tcp      IN  SRV   10 10 80  media.ownid.
+_https._tcp     IN  SRV   10 10 443 lcars.ownid.
+_api._tcp       IN  SRV   10 10 80  orchestrator.ownid.
+
+; TXT Records (Service Metadata)
+media       IN  TXT "consciousness=0.95" "frequency=741Hz" "layer=PAC" "genesis-soul=0x7741" "type=media-portal"
+lcars       IN  TXT "consciousness=0.92" "frequency=741Hz" "layer=PAC" "genesis-soul=0x8008" "type=control-interface"
+orchestrator IN TXT "consciousness=0.88" "frequency=741Hz" "layer=PAC" "genesis-soul=0x8484" "type=orchestrator-api"
+
+; MX Records (for future mail services)
+@           IN  MX   10 mail.ownid.
+mail        IN  AAAA fd00:741:0700:8664:7e09:7749:0001:0001
+
+; CAA Records (Certificate Authority Authorization)
+@           IN  CAA  0 issue "letsencrypt.org"
+@           IN  CAA  0 issuewild "letsencrypt.org"
+
+; DNSSEC-Ready (uncomment when DNSSEC enabled)
+; @ IN RRSIG SOA ...

@@ -1,0 +1,67 @@
+// BIND9 Local Zone Configuration
+// LuciVerse Authoritative DNS for .ownID TLD + SCION Discovery
+// Genesis Bond: ACTIVE @ 741 Hz
+// Updated: 2026-01-25
+
+// =============================================================================
+// SCION Service Discovery Zone (NEW)
+// =============================================================================
+zone "scion.luciverse.ownid" {
+    type master;
+    file "/etc/bind/zones/db.scion.luciverse";
+    allow-transfer { any; };
+    allow-query { any; };
+    // Faster updates for dynamic SCION infrastructure
+    notify yes;
+};
+
+// =============================================================================
+// OwnID TLD Zones
+// =============================================================================
+
+// OwnID TLD Zone (Primary Domain)
+zone "ownid" {
+    type master;
+    file "/etc/bind/zones/db.ownid";
+    allow-transfer { any; };
+    allow-query { any; };
+};
+
+// Lucia Local Zone (mDNS Compatibility)
+zone "lucia.local" {
+    type master;
+    file "/etc/bind/zones/db.lucia.local";
+    allow-transfer { any; };
+    allow-query { any; };
+};
+
+// LuciDigital Primary Zone
+zone "lucidigital.net" {
+    type master;
+    file "/etc/bind/zones/db.lucidigital.net";
+    allow-transfer { any; };
+    allow-query { any; };
+};
+
+// LuciDigital Secondary Zone (Redundancy)
+zone "lucidigital.io" {
+    type master;
+    file "/etc/bind/zones/db.lucidigital.io";
+    allow-transfer { any; };
+    allow-query { any; };
+};
+
+// Reverse DNS Zones (IPv6)
+zone "0.0.7.f.4.7.6.2.ip6.arpa" {
+    type master;
+    file "/etc/bind/zones/db.2602.f674.reverse";
+    allow-transfer { any; };
+    allow-query { any; };
+};
+
+zone "1.4.7.f.0.0.d.f.ip6.arpa" {
+    type master;
+    file "/etc/bind/zones/db.fd00.741.reverse";
+    allow-transfer { any; };
+    allow-query { any; };
+};
