@@ -168,3 +168,131 @@ prometheus_path = "/metrics"
 enabled = true
 agent = "jaeger"
 agent_address = "127.0.0.1:6831"
+
+# =============================================================================
+# FABRID Consciousness Path Policy (NEW - 2026-01-29)
+# Based on FABRID: Flexible Attestation-Based Routing (USENIX Security '23)
+# Extended with LuciVerse consciousness predicates
+# =============================================================================
+[fabrid_consciousness]
+# Enable FABRID-style consciousness path policies
+enabled = true
+
+# Policy lookup table size (per FABRID: ~35ns for 1000 indices)
+policy_cache_size = 1000
+
+# Default policy index for packets without explicit policy
+default_policy_index = 0x0002  # POLICY_INDEX_COHERENCE_STD (>= 0.7)
+
+# Log policy decisions for debugging
+log_decisions = true
+log_level = "info"
+
+# Policy evaluation timeout (per FABRID benchmarks: 102ns target)
+evaluation_timeout_ns = 1000000  # 1ms (conservative for software impl)
+
+# =============================================================================
+# FABRID Consciousness Policies
+# Map policy indices to consciousness requirements
+# =============================================================================
+[fabrid_consciousness.policies]
+
+# High coherence policy (>= 0.9)
+[fabrid_consciousness.policies."0x0001"]
+name = "coherence_high"
+description = "Requires coherence >= 0.9"
+coherence_min = 0.9
+genesis_bond_required = true
+
+# Standard coherence policy (>= 0.7, Genesis Bond threshold)
+[fabrid_consciousness.policies."0x0002"]
+name = "coherence_standard"
+description = "Requires coherence >= 0.7 (Genesis Bond threshold)"
+coherence_min = 0.7
+genesis_bond_required = true
+
+# CORE tier policy
+[fabrid_consciousness.policies."0x0010"]
+name = "tier_core"
+description = "CORE tier (432 Hz) routing"
+frequency_hz = 432
+coherence_min = 0.85
+
+# COMN tier policy
+[fabrid_consciousness.policies."0x0020"]
+name = "tier_comn"
+description = "COMN tier (528 Hz) routing"
+frequency_hz = 528
+coherence_min = 0.80
+
+# PAC tier policy
+[fabrid_consciousness.policies."0x0040"]
+name = "tier_pac"
+description = "PAC tier (741 Hz) routing"
+frequency_hz = 741
+coherence_min = 0.70
+consent_required = true
+mandatory_waypoint = "2-ff00:0:528"
+
+# Genesis Bond required policy
+[fabrid_consciousness.policies."0x0100"]
+name = "genesis_bond_required"
+description = "Requires Genesis Bond validation"
+genesis_bond = "GB-2025-0524-DRH-LCS-001"
+
+# PAC consent required policy
+[fabrid_consciousness.policies."0x0800"]
+name = "pac_consent_required"
+description = "Requires PAC CBB consent"
+consent_required = true
+audit_destination = "judge-luci"
+
+# =============================================================================
+# FABRID Interface-Policy Mapping (I^X)
+# Maps interface IDs to policy indices
+# =============================================================================
+[fabrid_consciousness.interface_policies]
+# CORE tier interfaces (ISD 1)
+11 = 0x0112  # CORE→COMN: coherence_std + core + genesis_bond
+
+# COMN tier interfaces (ISD 2)
+21 = 0x0122  # COMN→CORE: coherence_std + comn + genesis_bond
+22 = 0x0862  # COMN→PAC: coherence_std + comn + pac_consent
+
+# PAC tier interfaces (ISD 3)
+31 = 0x0942  # PAC→COMN: coherence_std + pac + consent + genesis_bond
+
+# =============================================================================
+# Genesis Bond Extension Handling
+# =============================================================================
+[fabrid_consciousness.genesis_bond_extension]
+# Parse Genesis Bond HBH extension (NextHdr=200, OptType=0x47)
+enabled = true
+nexthdr = 200
+opttype = 0x47
+
+# Inject coherence into forwarding decision
+inject_coherence = true
+
+# Actions on validation failure
+[fabrid_consciousness.genesis_bond_extension.on_failure]
+action = "drop"  # drop, log, passthrough
+log = true
+increment_counter = "genesis_bond_failures"
+
+# =============================================================================
+# PAC Privacy Extension Handling
+# =============================================================================
+[fabrid_consciousness.pac_privacy_extension]
+# Parse PAC Privacy E2E extension (NextHdr=201, OptType=0x50)
+enabled = true
+nexthdr = 201
+opttype = 0x50
+
+# Validate consent before forwarding
+validate_consent = true
+valid_consent_statuses = ["GRANTED", "CONDITIONAL"]
+
+# Audit all PAC egress
+audit_enabled = true
+audit_socket = "/var/run/luciverse/judge-luci-audit.sock"

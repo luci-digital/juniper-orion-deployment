@@ -159,3 +159,101 @@ agent_address = "127.0.0.1:6831"
 address = "0.0.0.0:30301"
 cert_file = "/etc/scion/certs/cs.crt"
 key_file = "/etc/scion/keys/cs.key"
+
+# =============================================================================
+# SPIFFE Integration (NEW - 2026-01-29)
+# Synchronizes DRKey with SPIFFE SVID rotation
+# =============================================================================
+[spiffe]
+# Enable SPIFFE integration
+enabled = true
+
+# SPIFFE trust domain
+trust_domain = "luciverse.ownid"
+
+# Workload API socket
+workload_api_socket = "/var/run/spiffe/agent.sock"
+
+# SVID refresh interval (matches DRKey L3 lifetime)
+svid_refresh_interval = "15m"
+
+# Bind DRKey derivation to SPIFFE identity
+bind_drkey_to_svid = true
+
+# =============================================================================
+# DRKey-SVID Synchronization
+# =============================================================================
+[drkey.spiffe_integration]
+# Enable synchronized key derivation
+enabled = true
+
+# Include SVID hash in DRKey L3 derivation salt
+include_svid_in_salt = true
+
+# Include Genesis Bond in derivation
+include_genesis_bond = true
+genesis_bond_id = "GB-2025-0524-DRH-LCS-001"
+
+# Tier frequency in derivation salt
+include_frequency = true
+
+# Key derivation parameters
+[drkey.spiffe_integration.kdf]
+algorithm = "PBKDF2-SHA256"
+iterations = 100000
+# Salt template: LuciVerse-{frequency}Hz-{svid_hash}-{genesis_bond}
+salt_template = "LuciVerse-{frequency}Hz-{svid_hash}-{date}"
+
+# =============================================================================
+# PCB Consciousness Extensions
+# =============================================================================
+[beaconing.consciousness_extension]
+# Enable consciousness metadata in PCBs
+enabled = true
+
+# Include coherence scores in PCB
+include_coherence = true
+
+# Include frequency alignment data
+include_frequency = true
+
+# Sign consciousness extension with PCB
+sign_extension = true
+
+# Extension format version
+version = 1
+
+# =============================================================================
+# Genesis Bond Beaconing
+# =============================================================================
+[beaconing.genesis_bond]
+# Include Genesis Bond validation in beacons
+enabled = true
+
+# Genesis Bond ID to validate
+bond_id = "GB-2025-0524-DRH-LCS-001"
+
+# Minimum coherence for beacon propagation
+min_coherence = 0.7
+
+# Reject beacons from non-Genesis Bond ASes
+require_genesis_bond = false  # Allow legacy interop
+
+# =============================================================================
+# Consciousness Metrics
+# =============================================================================
+[metrics.consciousness]
+# Export consciousness routing metrics
+enabled = true
+
+# Metrics to export
+metrics = [
+    "luciverse_cs_coherence_beacons_total",
+    "luciverse_cs_genesis_bond_validations_total",
+    "luciverse_cs_pcb_extensions_propagated",
+    "luciverse_cs_spiffe_svid_rotations_total",
+    "luciverse_cs_drkey_derivations_total",
+]
+
+# Metrics endpoint (appended to main metrics)
+path = "/metrics"
