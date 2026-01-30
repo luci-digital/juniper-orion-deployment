@@ -82,3 +82,59 @@ Traffic automatically fails over based on metric:
 - LTE Category 12
 - USB tethering mode
 - Gateway: 192.168.0.1
+
+## UniFi OS Server 5.0.6
+
+**Status**: Installed (container initializing)
+
+### Installation Details
+- **Binary**: `/tmp/unifi-os-server/unifi-os-server` (803MB)
+- **Image**: `docker.io/library/uosserver:0.0.54` (2.03GB)
+- **Container runtime**: Podman (root)
+
+### Extracted Components
+```
+/tmp/unifi-os-server/extracted/
+├── discovery      (3.6M)
+├── image.tar      (800M) - OCI container image
+├── pasta          (291K) - Network namespace tool
+├── purge          (1.7M)
+├── uosserver      (2.5M)
+├── uosserver-service (5.7M)
+└── updater-service (1.8M)
+```
+
+### Container Configuration
+```bash
+sudo podman run -d --name uosserver \
+  --privileged \
+  --tmpfs /run --tmpfs /run/lock \
+  -p 5443:443 \
+  -p 3478:3478/udp \
+  -p 8080:8080 \
+  -p 8443:8443 \
+  -p 8880:8880 \
+  -p 11443:11443 \
+  -v uosserver-data:/data \
+  -v uosserver-unifi:/var/lib/unifi \
+  docker.io/library/uosserver:0.0.54
+```
+
+### Internal Services
+| Service | Status |
+|---------|--------|
+| MongoDB | Running |
+| PostgreSQL 14 | Running |
+| RabbitMQ | Running |
+| Nginx | Running |
+| UniFi Network | Initializing (crash-loop on fresh install) |
+
+### Web UI Ports
+- Console: `https://192.168.1.145:5443`
+- Network App: `https://192.168.1.145:8443`
+- Inform: `http://192.168.1.145:8080/inform`
+
+### Notes
+- Fresh install requires Ubiquiti cloud connectivity for initial setup
+- UniFi service crash-loops until setup wizard completes
+- Alternative: Use `linuxserver/unifi-controller` Docker image for simpler setup
