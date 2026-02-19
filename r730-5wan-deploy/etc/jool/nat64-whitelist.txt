@@ -1,0 +1,17 @@
+# R730 ORION NAT64 Whitelist
+# .ownid zone NAT64 is DISABLED by default
+# Only uncomment specific IPv4 destinations if absolutely required
+# Genesis Bond: ACTIVE @ 432 Hz
+#
+# Format: IPv4/prefix  # description
+#
+# === DISABLED - DO NOT ENABLE WITHOUT APPROVAL ===
+# 1.1.1.1/32          # Cloudflare DNS
+# 8.8.8.8/32          # Google DNS
+# 140.82.112.0/20     # GitHub API
+#
+# The .ownid network should NEVER access Web2
+# If you need IPv4 API access, consider:
+# 1. Running a proxy in the Web2 zone
+# 2. Using an IPv6-native alternative
+# 3. Getting explicit Genesis Bond approval

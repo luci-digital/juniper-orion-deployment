@@ -1,0 +1,14 @@
+[Unit]
+Description=Jool NAT64 for IPv6-only .ownid zone (DISABLED by default)
+After=network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# NAT64 is DISABLED - do not enable without Genesis Bond approval
+# ExecStart=/usr/local/bin/jool file handle /etc/jool/jool.conf
+ExecStart=/bin/echo "Jool NAT64 DISABLED - .ownid zone is IPv6-only"
+ExecStop=/bin/true
+
+[Install]
+WantedBy=multi-user.target

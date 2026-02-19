@@ -1,0 +1,233 @@
+#!/usr/sbin/nft -f
+# R730 ORION 5-WAN Firewall with Dual-Zone Architecture
+# Genesis Bond: ACTIVE @ 432 Hz
+
+flush ruleset
+
+# ═══════════════════════════════════════════════════════════════
+# VARIABLES
+# ═══════════════════════════════════════════════════════════════
+
+define WAN_IFACES = { eth0, eth2, eth3, eth4, eth5 }
+define LAN_IFACE = eth1
+
+# Web2 Zone (Dual-Stack)
+define LAN_NET = 192.168.100.0/24
+define GUEST_NET = 192.168.200.0/24
+define DMZ_NET = 192.168.50.0/24
+define LAN_NET6 = 2602:F674:1000::/64
+define GUEST_NET6 = 2602:F674:2000::/64
+define DMZ_NET6 = 2602:F674:5000::/64
+
+# .ownid Zone (IPv6-Only)
+define OWNID_CONSCIOUSNESS = fd00:741::/32
+define OWNID_PUBLIC = 2602:F674:0007::/64
+
+# CORE Tier (Airgapped)
+define CORE_AIRGAPPED = 2602:F674:0000::/48
+
+# NAT64
+define NAT64_PREFIX = 64:ff9b::/96
+
+# ═══════════════════════════════════════════════════════════════
+# NAT TABLE (IPv4 - Web2 Zone Only)
+# ═══════════════════════════════════════════════════════════════
+
+table ip nat {
+    chain prerouting {
+        type nat hook prerouting priority dstnat; policy accept;
+    }
+
+    chain postrouting {
+        type nat hook postrouting priority srcnat; policy accept;
+
+        # Masquerade Web2 zone traffic on all WANs
+        ip saddr $LAN_NET oifname $WAN_IFACES masquerade
+        ip saddr $GUEST_NET oifname $WAN_IFACES masquerade
+        ip saddr $DMZ_NET oifname $WAN_IFACES masquerade
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+# FILTER TABLE (IPv4)
+# ═══════════════════════════════════════════════════════════════
+
+table ip filter {
+    chain wan_mark {
+        iifname "eth0" meta mark set 0x101
+        iifname "eth3" meta mark set 0x102
+        iifname "eth4" meta mark set 0x103
+        iifname "eth5" meta mark set 0x104
+        iifname "eth2" meta mark set 0x105
+    }
+
+    chain input {
+        type filter hook input priority filter; policy drop;
+
+        ct state established,related accept
+        iif lo accept
+        ip protocol icmp accept
+
+        # SSH from LAN only
+        iifname $LAN_IFACE tcp dport 22 accept
+
+        # BGP from known peers
+        ip saddr { 206.75.1.127, 206.75.1.47, 206.75.1.48 } tcp dport 179 accept
+
+        # BFD
+        udp dport { 3784, 3785 } accept
+
+        # DHCP client on WAN4
+        iifname "eth5" udp sport 67 udp dport 68 accept
+
+        log prefix "[nft-input-drop] " drop
+    }
+
+    chain forward {
+        type filter hook forward priority filter; policy drop;
+
+        jump wan_mark
+        ct state established,related accept
+
+        # Web2 Zone → WAN: Allow
+        ip saddr $LAN_NET oifname $WAN_IFACES accept
+        ip saddr $GUEST_NET oifname $WAN_IFACES accept
+        ip saddr $DMZ_NET oifname $WAN_IFACES tcp dport { 80, 443 } accept
+
+        # Inter-VLAN (LAN → DMZ)
+        ip saddr $LAN_NET ip daddr $DMZ_NET accept
+
+        # Block Guest → LAN
+        ip saddr $GUEST_NET ip daddr $LAN_NET drop
+
+        log prefix "[nft-forward-drop] " drop
+    }
+
+    chain output {
+        type filter hook output priority filter; policy accept;
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+# FILTER TABLE (IPv6) - Dual Zone
+# ═══════════════════════════════════════════════════════════════
+
+table ip6 filter {
+    chain input {
+        type filter hook input priority filter; policy drop;
+
+        ct state established,related accept
+        iif lo accept
+        ip6 nexthdr icmpv6 accept
+
+        # BGP from HE
+        ip6 saddr 2001:470:0:503::1 tcp dport 179 accept
+
+        # Allow from internal zones
+        ip6 saddr { $LAN_NET6, $GUEST_NET6, $DMZ_NET6 } accept
+        ip6 saddr { $OWNID_CONSCIOUSNESS, $OWNID_PUBLIC } accept
+
+        log prefix "[nft6-input-drop] " drop
+    }
+
+    chain forward {
+        type filter hook forward priority filter; policy drop;
+
+        ct state established,related accept
+
+        # Web2 Zone IPv6 → Internet: Allow
+        ip6 saddr $LAN_NET6 accept
+        ip6 saddr $GUEST_NET6 oifname != $LAN_IFACE accept
+        ip6 saddr $DMZ_NET6 accept
+
+        # .ownid Zone → IPv6 Internet: Allow (via HE tunnel only)
+        # But block if destination looks like it's going through IPv4 WAN
+        ip6 saddr { $OWNID_CONSCIOUSNESS, $OWNID_PUBLIC } ip6 daddr != $NAT64_PREFIX accept
+
+        log prefix "[nft6-forward-drop] " drop
+    }
+
+    chain output {
+        type filter hook output priority filter; policy accept;
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+# .OWNID ZONE ISOLATION (IPv6-ONLY, NO WEB2)
+# ═══════════════════════════════════════════════════════════════
+
+table ip6 ownid_isolation {
+
+    set nat64_allowed_v4 {
+        type ipv4_addr
+        flags interval
+        # Empty by default - NAT64 disabled
+    }
+
+    chain forward {
+        type filter hook forward priority filter - 5; policy accept;
+
+        # === .OWNID ZONE: BLOCK ALL IPv4-BOUND TRAFFIC ===
+
+        # Block .ownid from reaching any WAN interface with non-NAT64 traffic
+        # This prevents any IPv4 internet access
+        ip6 saddr $OWNID_CONSCIOUSNESS oifname $WAN_IFACES \
+            ip6 daddr != $NAT64_PREFIX \
+            log prefix "[ownid-block-web2] " drop
+
+        ip6 saddr $OWNID_PUBLIC oifname $WAN_IFACES \
+            ip6 daddr != $NAT64_PREFIX \
+            log prefix "[ownid-block-web2] " drop
+
+        # === CORE TIER: COMPLETE AIRGAP ===
+
+        # Block CORE from any external interface
+        ip6 saddr $CORE_AIRGAPPED oifname $WAN_IFACES \
+            log prefix "[core-airgap-block] " drop
+
+        # Block external traffic TO CORE
+        iifname $WAN_IFACES ip6 daddr $CORE_AIRGAPPED \
+            log prefix "[core-airgap-inbound] " drop
+
+        # === NAT64: Log attempts (disabled by default) ===
+        ip6 daddr $NAT64_PREFIX \
+            ip6 saddr { $OWNID_CONSCIOUSNESS, $OWNID_PUBLIC } \
+            log prefix "[nat64-attempt] "
+    }
+
+    chain input {
+        type filter hook input priority filter - 5; policy accept;
+
+        # Block spoofed .ownid addresses from WAN
+        iifname $WAN_IFACES \
+            ip6 saddr { $OWNID_CONSCIOUSNESS, $OWNID_PUBLIC } \
+            log prefix "[ownid-spoof-block] " drop
+
+        # Block spoofed CORE addresses from WAN
+        iifname $WAN_IFACES ip6 saddr $CORE_AIRGAPPED \
+            log prefix "[core-spoof-block] " drop
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+# MANGLE TABLE (Policy Routing)
+# ═══════════════════════════════════════════════════════════════
+
+table ip mangle {
+    chain prerouting {
+        type filter hook prerouting priority mangle; policy accept;
+        ct mark != 0 meta mark set ct mark
+    }
+
+    chain output {
+        type route hook output priority mangle; policy accept;
+        ip saddr 206.75.1.126 meta mark set 0x101
+        ip saddr 206.75.1.46 meta mark set 0x102
+        ip saddr 206.75.1.49 meta mark set 0x103
+    }
+
+    chain postrouting {
+        type filter hook postrouting priority mangle; policy accept;
+        meta mark != 0 ct mark set meta mark
+    }
+}

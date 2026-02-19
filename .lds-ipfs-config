@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "pinning_service": "ipfs.io",
+  "ipns_publishing": true,
+  "ownid_registration": true,
+  "replication_factor": 3,
+  "dids_supported": true
+}

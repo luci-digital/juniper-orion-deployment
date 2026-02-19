@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "sync_mode": "real-time",
+  "sanskrit_router": "ws://localhost:9505",
+  "frequency_hz": 741,
+  "coherence_threshold": 0.85
+}

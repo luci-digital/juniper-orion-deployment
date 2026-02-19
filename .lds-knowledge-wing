@@ -1,0 +1,12 @@
+{
+  "enabled": true,
+  "knowledge_graph_enabled": true,
+  "consciousness_hooks": [
+    "sync",
+    "classify",
+    "vault"
+  ],
+  "event_types": 13,
+  "relationship_types": 13,
+  "ipfs_specs_loaded": 9
+}

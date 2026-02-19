@@ -1,0 +1,12 @@
+# R730 ORION Routing Tables
+255     local
+254     main
+253     default
+0       unspec
+
+# WAN routing tables
+101     wan1
+102     wan2
+103     wan3
+104     wan4
+105     wan5
