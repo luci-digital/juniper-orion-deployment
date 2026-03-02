@@ -19,7 +19,7 @@
 | iDRAC IP | 10.0.0.33 |
 | iDRAC User | root |
 | iDRAC Password | *[existing]* |
-| Data IP | 192.168.1.141 |
+| Data IP | orion.lucidigital.io |
 | Hostname | orion |
 | Service Tag | *[from hardware]* |
 
@@ -70,7 +70,7 @@
 | BIRD2 | Enabled |
 | nftables | Enabled |
 | Health Monitor Port | 9200 |
-| Prometheus Metrics | http://192.168.1.141:9200/metrics |
+| Prometheus Metrics | http://orion.lucidigital.io:9200/metrics |
 
 ---
 
@@ -84,7 +84,7 @@
 |-------|-------|
 | Package Location | ~/juniper-orion-deployment/r730-5wan-deploy.tar.gz |
 | Deploy Script | ./r730-5wan-deploy/deploy.sh |
-| Target Host | root@192.168.1.141 |
+| Target Host | root@orion.lucidigital.io |
 | Log File | /var/log/r730-5wan-deploy.log |
 
 #### Pre-Deployment Checklist
@@ -147,7 +147,7 @@
 ```bash
 # R730 ORION health check
 check_orion_health() {
-    local status=$(curl -sf --connect-timeout 2 http://192.168.1.141:9200/health 2>/dev/null)
+    local status=$(curl -sf --connect-timeout 2 http://orion.lucidigital.io:9200/health 2>/dev/null)
     if [ -n "$status" ]; then
         echo "✓ R730 ORION: HEALTHY"
         echo "  WANs: $(echo "$status" | jq -r 'to_entries | map(select(.value.healthy == true) | .key) | join(", ")')"
@@ -206,7 +206,7 @@ op item create --vault Infrastructure \
   --title "R730 ORION 5-WAN Router" \
   'Hardware.iDRAC IP[text]=10.0.0.33' \
   'Hardware.iDRAC User[text]=root' \
-  'Hardware.Data IP[text]=192.168.1.141' \
+  'Hardware.Data IP[text]=orion.lucidigital.io' \
   'Hardware.Hostname[text]=orion' \
   'Network Interfaces.WAN1 Interface[text]=eth0' \
   'Network Interfaces.WAN1 IP[text]=206.75.1.126/30' \

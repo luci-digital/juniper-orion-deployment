@@ -41,7 +41,7 @@ op item create --vault Infrastructure \
   --title "R730 ORION 5-WAN Router" \
   'Hardware.iDRAC IP[text]=10.0.0.33' \
   'Hardware.iDRAC User[text]=root' \
-  'Hardware.Data IP[text]=192.168.1.141' \
+  'Hardware.Data IP[text]=orion.lucidigital.io' \
   'Hardware.Hostname[text]=orion' \
   'Network Interfaces.WAN1 Interface[text]=eth0' \
   'Network Interfaces.WAN1 IP[text]=206.75.1.126/30' \
@@ -78,7 +78,7 @@ op item create --vault Infrastructure \
   'Services.Health Monitor Port[text]=9200' \
   'Services.BIRD2[text]=Enabled' \
   'Services.nftables[text]=Enabled' \
-  'Services.Prometheus Endpoint[text]=http://192.168.1.141:9200/metrics' \
+  'Services.Prometheus Endpoint[text]=http://orion.lucidigital.io:9200/metrics' \
   'Deployment.Package Location[text]=~/juniper-orion-deployment/r730-5wan-deploy.tar.gz' \
   'Deployment.Deploy Script[text]=./r730-5wan-deploy/deploy.sh' \
   'Deployment.Log File[text]=/var/log/r730-5wan-deploy.log' \
